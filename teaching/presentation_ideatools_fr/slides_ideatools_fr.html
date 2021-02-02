@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>IDEATools</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Carayon | Unité de recherche ETBX" />
+    <meta name="date" content="2021-02-02" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="styles/remark_inrae.css" type="text/css" />
+    <link rel="stylesheet" href="styles/fonts_inrae.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# IDEATools
+## Un package R dédié à la méthode IDEA4
+### David Carayon | Unité de recherche ETBX
+### 2021-02-02
+
+---
+
+
+layout: true
+
+
+
+
+---
+class: center, middle
+
+# Introduction
+
+---
+
+# Qu'est ce qu'IDEA ?
+
+
+&lt;center&gt;
+&lt;img src="img/logo_idea_white.png" width="60%"/&gt;
+&lt;/center&gt;
+
+- Méthode permettant d'évaluer la performance globale d'une exploitation agricole dans le temps via une approche pédagogique.
+
+- Aide au diagnostic/pilotage et propose des pistes concrètes d'amélioration
+
+
+---
+
+
+# Une nouvelle version d'IDEA ... 
+
+
+IDEA V4 introduit un tout nouveau cadre conceptuel, proposant 53 indicateurs permettant d'analyser la durabilité d'une exploitation agricole selon deux approches complémentaires.
+
+
+&lt;center&gt;
+&lt;img src="img/cap_idea_exp.png" width="60%"  /&gt;
+&lt;/center&gt;
+
+
+
+---
+
+# ... Qui demande des nouveaux outils
+
+
+.pull-left[
+
+
+- 107 items, 53 indicateurs, 13 composantes, 3 dimensions, 15 branches...
+
+
+- Tables de conversion, calcul du bilan apparent, données comptables...
+
+]
+
+--
+
+.pull-right[
+&lt;p style='color:red'&gt; - Besoin d'outils informatiques automatisés !&lt;/p&gt;
+&lt;center&gt;
+&lt;img src="img/granny.jpg" width="90%" /&gt;
+&lt;/center&gt;
+]
+
+---
+
+class: center, middle
+
+# Quels outils informatiques ?
+
+---
+
+# Approche par les dimensions (Principes)
+
+- Approche basée sur du scoring, sommes plafonnées
+
+&lt;center&gt;
+
+&lt;img src="img/cap_dim.png" width="100%" /&gt;
+
+&lt;/center&gt;
+
+---
+
+## Approche par les dimensions (Solutions)
+
+- Développement d'un calculateur sous Excel
+
+&lt;center&gt;
+
+&lt;img src="img/calculateur.png" width="80%" /&gt;
+
+&lt;/center&gt;
+
+---
+
+
+.pull-left[
+- Avantages du calculateur excel :
+  - Regroupe la saisie et la restitution des résultats
+  - Ne dépend pas d'une connexion internet
+  ]
+  
+--
+  
+.pull-right[
+- Inconvénients : 
+  - Logiciel propriétaire
+  - Capacités limitées pour la restitution graphique
+  - Entrée utilisateur "hasardeuse"
+  
+]
+
+  &lt;center&gt;
+
+&lt;img src="img/Formulasjoke.png" width="75%" /&gt;
+
+&lt;/center&gt;
+  
+---
+
+# Approche par les propriétés (Principes)
+
+- Approche basée sur de l'agrégation qualitative hiérarchique (branches, noeuds, sous-noeuds...)
+
+&lt;center&gt;
+
+&lt;img src="img/cap_prop.png" width="75%" /&gt;
+
+&lt;/center&gt;
+
+---
+
+# Approche par les propriétés (Solutions)
+
+.pull-left[
+Ancienne procédure :
+- Remplir le calculateur excel *Dimensions*
+- Recopie manuelle vers DEXi
+- Travail dans DEXi
+- Recopie manuelle dans un **nouveau** calculateur excel
+- Coloration **manuelle** des cases
+]
+
+--
+
+.pull-right[
+- En cas d'erreur... On recommence !
+
+&lt;center&gt;
+
+&lt;img src="img/496.jpg" width="75%" /&gt;
+
+&lt;/center&gt;
+
+
+]
+
+
+---
+
+# Etat des lieux au 01/10/2019
+
+### - Besoins techniques : Approche par les propriétés
+  
+
+### - Besoins de fiabilité : Automatisation des processus
+
+
+### - Besoins de rapidité : Traitement de 20, 50, 100 exploitations
+
+
+### - Besoins de représentations : Visualisations modernes
+
+---
+
+class: center, middle
+
+# IDEATools
+
+&lt;center&gt;
+
+&lt;img src="img/logo_hex.png" width="20%" /&gt;
+
+&lt;/center&gt;
+
+---
+
+# IDEATools, qu'est ce que c'est ?
+
+&gt; *IDEATools est un ensemble de scripts programmés sous **R**, rassemblés sous forme de **package**, mettant à disposition une collection d'outils et de règles de décisions pour le calcul, l'automatisation et le reporting de données IDEA V4.*
+&lt;br&gt;
+Carayon et al., 2020.
+
+---
+
+# Pourquoi une technologie R ? 
+
+&lt;center&gt;
+&lt;img src="img/Rlogo.png" width="20%" /&gt;
+&lt;/center&gt;
+
+- R est open source : c’est un programme libre et gratuit.
+- R est référant : c’est un logiciel beaucoup utilisé par les universitaires mais aussi dans le privé ou le milieu industriel.
+- R est un langage de programmation : le travail repose sur des scripts, des algorithmes, ce qui permet une automatisation efficace et garantit la reproductibilité des résultats.
+
+---
+
+- ... Et on fait avec ce qu'on maîtrise !
+
+&lt;center&gt;
+
+&lt;img src="img/dev.jpg" width="40%" /&gt;
+
+&lt;/center&gt;
+
+---
+
+class: center, middle
+
+# Les 3 objectifs d'IDEATools
+
+---
+
+# 1.1 Remplacer DEXi pour l'approche par les propriétés
+
+- Traduction des règles de décision construites sous DEXi (= 48 tables) sous forme de `data.frame` dans R
+
+Exemple (extrait): 
+
+.small[
+
+|A1 - Diversité des cultures |A3 - Diversité temporelle des cultures |A4 - Qualité spatiale du territoire |Diversité de l'organisation spatiale et temporelle |
+|:---------------------------|:--------------------------------------|:-----------------------------------|:--------------------------------------------------|
+|défavorable                 |défavorable                            |défavorable                         |très défavorable                                   |
+|défavorable                 |défavorable                            |intermédiaire                       |très défavorable                                   |
+|défavorable                 |défavorable                            |favorable                           |défavorable                                        |
+|défavorable                 |intermédiaire                          |défavorable                         |très défavorable                                   |
+|défavorable                 |intermédiaire                          |intermédiaire                       |défavorable                                        |
+|défavorable                 |intermédiaire                          |favorable                           |défavorable                                        |
+|défavorable                 |favorable                              |défavorable                         |défavorable                                        |
+|défavorable                 |favorable                              |intermédiaire                       |défavorable                                        |
+|défavorable                 |favorable                              |favorable                           |favorable                                          |
+|intermédiaire               |défavorable                            |défavorable                         |très défavorable                                   |
+|intermédiaire               |défavorable                            |intermédiaire                       |défavorable                                        |
+|intermédiaire               |défavorable                            |favorable                           |défavorable                                        |
+|intermédiaire               |intermédiaire                          |défavorable                         |défavorable                                        |
+|intermédiaire               |intermédiaire                          |intermédiaire                       |favorable                                          |
+|intermédiaire               |intermédiaire                          |favorable                           |favorable                                          |
+|intermédiaire               |favorable                              |défavorable                         |défavorable                                        |
+|intermédiaire               |favorable                              |intermédiaire                       |favorable                                          |
+|intermédiaire               |favorable                              |favorable                           |très favorable                                     |
+|favorable                   |défavorable                            |défavorable                         |défavorable                                        |
+|favorable                   |défavorable                            |intermédiaire                       |défavorable                                        |
+|favorable                   |défavorable                            |favorable                           |favorable                                          |
+|favorable                   |intermédiaire                          |défavorable                         |défavorable                                        |
+|favorable                   |intermédiaire                          |intermédiaire                       |favorable                                          |
+|favorable                   |intermédiaire                          |favorable                           |très favorable                                     |
+|favorable                   |favorable                              |défavorable                         |favorable                                          |
+|favorable                   |favorable                              |intermédiaire                       |très favorable                                     |
+|favorable                   |favorable                              |favorable                           |très favorable                                     |
+]
+
+---
+
+# 1.2 Production des arbres éclairés
+
+&lt;center&gt;
+
+&lt;img src="img/cap_canvas.png" width="90%" /&gt;
+
+&lt;/center&gt;
+
+- Tracé de modèles "blanc" à la main
+- Algorithmes à base de "Rechercher/remplacer" pour modifier le code source du modèle en fonction des données
+
+---
+
+# 2. Production de nouveaux graphiques
+
+&lt;center&gt;
+
+&lt;img src="img/cap_graphs.png" width="100%" /&gt;
+
+&lt;/center&gt;
+
+---
+
+# 3. Vers des solutions de reporting
+
+.pull-left[
+- Compilation des résultats
+- 6 formats possibles
+- Certains destinés à l'impression, d'autres à la modification
+- Durée : ~25s par analyse complète (dimensions + propriétés)
+- Documents de ~6Mb
+]
+
+.pull-right[
+&lt;center&gt;
+&lt;img src="img/reporting.png" width="100%" /&gt;
+&lt;/center&gt;
+]
+
+---
+
+# Exemple de diagnostic
+
+```r
+
+library(IDEATools)
+
+diag_idea(input,
+          output_directory,
+          type = c("single","group"),
+          export_type = c("report","local",NULL),
+          plot_choices = c("dimensions","trees","radars"),
+          report_format = c("pdf","html","docx","odt","pptx","xlsx"),
+          prefix = "EA",
+          dpi = 300,
+          quiet = FALSE)
+
+```
+
+---
+
+# Bilan
+
+.pull-left[
+- IDEATools 2.0 fonctionnel (quelques améliorations à prévoir)
+- Package publié sous licence GPL 3 sur [Github](https://github.com/davidcarayon/IDEATools)
+
+- Site web dédié : [https://davidcarayon.github.io/IDEATools/](https://davidcarayon.github.io/IDEATools/)
+]
+
+.pull-right[
+&lt;center&gt;
+&lt;img src="img/gh_cap.png" width="100%" /&gt;
+&lt;/center&gt;
+]
+
+--
+
+---
+
+# Sauf que...
+
+- Bien qu'il soit fonctionnel, il reste reservé aux utilisateurs de R...
+
+--
+
+&lt;center&gt;
+&lt;img src="img/scared.jpg" width="50%" /&gt;
+&lt;/center&gt;
+
+---
+
+class: center, middle
+
+# ShinyIDEA
+
+---
+
+# Shiny, c'est quoi ?
+
+&lt;center&gt;
+&lt;img src="img/cap_shiny.png" width="50%" /&gt;
+&lt;/center&gt;
+
+- Shiny est un package permettant le développement d'applications interactives pour le web tout en profitant de la puissance calculatoire et des nombreuses librairies graphiques de R. 
+- Idéal pour la valorisation de résultats de la rercherche / d'outils R
+- Possibilité d'intégrer des langages de programation WEB (HTML/CSS/JS) dans du code R
+
+---
+
+# ShinyIDEA
+
+- [https://outils-idea.inrae.fr/](https://outils-idea.inrae.fr/) (Work in Progress...)
+
+&lt;center&gt;
+&lt;img src="img/cap_shinyidea.png" width="75%" /&gt;
+&lt;/center&gt;
+
+---
+
+# Analyse individuelle
+
+&lt;center&gt;
+&lt;img src="img/cap_indiv.png" width="80%" /&gt;
+&lt;/center&gt;
+
+---
+
+# Analyse de groupe
+
+&lt;center&gt;
+&lt;img src="img/cap_grp.png" width="80%" /&gt;
+&lt;/center&gt;
+
+---
+
+# Démonstration
+
+&lt;center&gt;
+
+&lt;img src="img/demo_time.jpg" width="60%" /&gt;
+
+&lt;/center&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-0.15.0.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:10",
+"slideNumberFormat": "%current% / %total%",
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
