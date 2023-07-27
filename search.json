@@ -1,0 +1,352 @@
+[
+  {
+    "objectID": "talks/2023-test/test-idea.html#quarto",
+    "href": "talks/2023-test/test-idea.html#quarto",
+    "title": "La méthode IDEA4",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "talks/2023-test/test-idea.html#bullets",
+    "href": "talks/2023-test/test-idea.html#bullets",
+    "title": "La méthode IDEA4",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "talks/2023-test/test-idea.html#code",
+    "href": "talks/2023-test/test-idea.html#code",
+    "title": "La méthode IDEA4",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
+  },
+  {
+    "objectID": "talks/2023-test/test-idea.html#about-machine-learning",
+    "href": "talks/2023-test/test-idea.html#about-machine-learning",
+    "title": "La méthode IDEA4",
+    "section": "About machine learning",
+    "text": "About machine learning"
+  },
+  {
+    "objectID": "talks/2023-test/test-idea.html#thank-you",
+    "href": "talks/2023-test/test-idea.html#thank-you",
+    "title": "La méthode IDEA4",
+    "section": "Thank you!",
+    "text": "Thank you!\n\nFind me online:\n david.carayon@inrae.fr\n https://david.carayon.pages.mia.inra.fr/site/\n @davidcarayon\n forgemia.inra.fr/david.carayon\n @david_carayon\n\n Slides available here\n\n\nPrésentation de la méthode IDEA4 | Séminaire"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#shiny-cest-quoi",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#shiny-cest-quoi",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Shiny, c’est quoi ? 🤔",
+    "text": "Shiny, c’est quoi ? 🤔\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShiny est un package R qui permet de développer facilement des applications web interactives dans une syntaxe R très simple (pouvant être complétée par du HTML / CSS / JS pour les applications les plus abouties).\nOutil principalement utilisé pour l’analyse et la visualisation de données (mais pas que)"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#un-exemple",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#un-exemple",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Un exemple",
+    "text": "Un exemple\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD ::: columns ::: {.column width=“50%”}  :::\n\n\n\n\nExemple EABX"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#quelques-notions-nécessaires",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#quelques-notions-nécessaires",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Quelques notions nécessaires",
+    "text": "Quelques notions nécessaires\nContinuous Integration / Continuous Development (CI/CD)\n\n\n\n\n\n\n\n\nSuite d’instructions automatiques lors de mise à jour de code\nPermet d’appliquer des tests automatiques (sécurité) ou encore d’effectuer des actions (publication de données, pages web, etc.)\nPiloté par exemple par un fichier .gitlab-ci.yml\n\n\n\n\ngitlab-ci.yml\n\n01-Publier:\n  stage: Gérer mon application\n  needs: [\"Construire-l-application\"]\n  image: curlimages/curl:latest\n  rules:\n    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == \"true\"'\n      when: on_success\n      allow_failure: false\n    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == \"false\"'\n      when: manual\n      allow_failure: true\n  before_script:\n    - ACTION=$SK8_DEPLOY\n  script:\n    - *commande-job"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#quelques-notions-nécessaires-1",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#quelques-notions-nécessaires-1",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Quelques notions nécessaires",
+    "text": "Quelques notions nécessaires\nDocker\n\n\n\n\nPermet de Containeuriser des logiciels, applications\nCréation d’une image Docker à partir d’une recette : le Dockerfile\nFacilite la diffusion (gestion des dépendances systèmes, etc.)\n\n\n\n\nDockerfile\n\nFROM rocker/verse:4.2.1\nRUN apt-get update && apt-get install -y  cmake imagemagick libcurl4-openssl-dev [...]\nRUN mkdir -p /usr/local/lib/R/etc/ /usr/lib/R/etc/\nRUN echo \"options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)\"\nRUN R -e 'install.packages(\"remotes\")'\nRUN Rscript -e 'remotes::install_version(\"magrittr\",upgrade=\"never\", version = \"2.0.3\")'\nRUN Rscript -e 'remotes::install_version(\"htmltools\",upgrade=\"never\", version = \"0.5.5\")'\n[...]\nRUN Rscript -e 'remotes::install_github(\"rstudio/sass@2f1f152d84c162ccb9aba1c056e3548079d669d9\")'\nRUN mkdir /build_zone\nADD . /build_zone\nWORKDIR /build_zone\nRUN R -e 'remotes::install_local(upgrade=\"never\")'\nRUN rm -rf /build_zone\nEXPOSE 3838\nCMD R -e \"options('shiny.port'=3838,shiny.host='0.0.0.0');ShinyIDEA::run_app()\""
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#quelques-notions-nécessaires-2",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#quelques-notions-nécessaires-2",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Quelques notions nécessaires",
+    "text": "Quelques notions nécessaires\nKubernetes\n Solution permettant de distribuer intelligemment des container Docker aux utilisateurs."
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#plusieurs-constats",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#plusieurs-constats",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Plusieurs constats…",
+    "text": "Plusieurs constats…\n\n\n\n Les applications R Shiny sont de plus en plus présentes dans notre environnement\n Peuvent être développées par des néophytes comme par des développeurs chevronnés\n Formidable outil de partage / valorisation et démocratisation des travaux menés dans l’institut\n Problématique majeure et récurrente autour de l’hébergement 😩"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#solutions-existantes-dhébergement",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#solutions-existantes-dhébergement",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Solutions existantes d’hébergement",
+    "text": "Solutions existantes d’hébergement\n\n\n\n\n\n\n\nSolutions d’hébergement propriétaires\n\n\n\n \n\n\n\n\n\n\n\nRapprochement Shiny/Docker"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#solutions-existantes-à-inrae",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#solutions-existantes-à-inrae",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Solutions existantes à INRAE",
+    "text": "Solutions existantes à INRAE\n\nMultiples solutions ShinyServer OpenSource locales\nTrès limitées et problématiques en termes d’administration ⚠️\n\n\n\n\n\n\n\nUne solution intéressante à l’échelle d’une unité (BioSP)\n\n\n\nShinyProxy (Docker) https://shiny.biosp.inrae.fr\nGestion du code via GitLab CI/CD\nApplications conteneurisées\nAbstraction et meilleure gestion de la partie système"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8",
+    "text": "Le projet SK8\n\n\n\n\nR-Shiny Kubernetes Service \\(\\rightarrow\\) SK8SS \\(\\rightarrow\\) SK8 🛹"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8-pourquoi",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8-pourquoi",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8 : Pourquoi ?",
+    "text": "Le projet SK8 : Pourquoi ?\n\n\n\nBesoins en augmentation d’hébergement d’apps Shiny\n\n\n\nFacile d’accès, pérenne et évolutif\nScalable (élastique)\nSécurisé \n\n\n\n\n\n\n\n\nFinalité\n\n\n\nAvoir une meilleure visibilité et harmonisation des travaux de l’institut \n\n\n\n\n\n\n\n\n\nContrainte forte\n\n\n\nDoit rester dans l’institut\nDoit répondre aux besoins des agents"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#déroulé-du-projet",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#déroulé-du-projet",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Déroulé du projet",
+    "text": "Déroulé du projet\n\n\nProjet d’unité BioSP 2019, porté par Jean-François Rey \\(\\rightarrow\\) CATI IMOTEP\nV1 (2021) : Etude de faisabilité, état des lieux INRAE, création des groupes de travail\nV2 (2022) : Passage d’un projet CATI-IMOTEP \\(\\rightarrow\\) Inter-CATIs et ouverture de la version Bêta\nV2 (2023) : Passage de l’infra en version kickflip, refonte quarto documentation & site web\n\n\n\n\n\n\n\n\n\n\n\n\nQui paye ? 💶\n\n\n\nFinancements SAPI & DipSO 2022/2023 (Formation et hackatons)\nFinancements futurs (+ pérennisation) en cours de recherche"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8-cest-qui",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8-cest-qui",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8 : C’est qui ?",
+    "text": "Le projet SK8 : C’est qui ?\n\n\\(\\approx\\) 30 ITA (\\(\\approx\\) 15 actifs, noyau dur de 5 agents)\n\\(\\neq\\) CATIs (10), Unités, Départements scientifiques et directions\nStatisticiens, Bioinformaticiens, DevOps, Administrateurs systèmes…\n2 groupes de travail, réunions mensuelles :\n\nGroupe Utilisateurs \nGroupe DevOps"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8-cest-qui-1",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-projet-sk8-cest-qui-1",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8 : C’est qui ?",
+    "text": "Le projet SK8 : C’est qui ?"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#infrastructure-générale",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#infrastructure-générale",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Infrastructure générale",
+    "text": "Infrastructure générale\n\n\n\n\n\nSchéma simplifié du fonctionnement"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#du-point-de-vue-utilisateur",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#du-point-de-vue-utilisateur",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Du point de vue utilisateur",
+    "text": "Du point de vue utilisateur\n\n\n\n\n\n\n\nDemande d’hébergement : 🆕 https://demande-hebergement.sk8.inrae.fr 🆕\nCréation automatique d’une issue sur le support https://forgemia.inra.fr/sk8/sk8-support/\nCréation d’un projet (app) sous https://forgemia.inra.fr/sk8/sk8-apps/\nL’utilisateur ajoute son code : git clone | add | commit | push\nApplication disponible : https://sk8-demo.sk8.inrae.fr"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-catalogue-sk8",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#le-catalogue-sk8",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le catalogue SK8",
+    "text": "Le catalogue SK8\n\n\n\n\n\n\n\n\n\nL’utilisation d’un catalogue (via ShinyProxy) permet\n\n\n\nDe disposer d’un hub centralisé qui référence toutes les applications\nDe déployer une instance distincte pour chaque utilisateur d’une application\n\n\n\n\n\n\n\n\n\n\n\nhttps://shiny.sk8.inrae.fr"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#focus-app-demande-dhébergement",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#focus-app-demande-dhébergement",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Focus app demande d’hébergement",
+    "text": "Focus app demande d’hébergement\n\n\n\nDéveloppé avec {shinysurveys}\nConnexion OAuth via la ForgeMIA (API GitLab )\nListes déroulantes personnalisées en fonction de l’utilisateur ()\nPossibilité d’upload un logo pour l’app : API pour l’intégrer dans une issue GitLab\nCréation du corps markdown d’une issue remplie avec les infos saisies ({glue})\nEnvoi d’un mail à l’utilisateur (serveur SMTP : dix-sk8)"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#bilan",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#bilan",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Bilan",
+    "text": "Bilan\n\n✅ Plateforme ouverte en version bêta ✅\n⚠️ Les use-case les plus complexes sont les bienvenus pour tester le service ! ⚠️\nTravail innovant mêlant de nombreuses technologies (R, Docker, Gitlab, CI/CD…)\nProjet mêlant une grande diversité de profils au travers de 10 CATIs\nAméliorations à venir au fil des travaux des groupes Users & Devops…\n… Mais principalement basé sur du volontariat !"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#et-la-suite",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#et-la-suite",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Et la suite ?",
+    "text": "Et la suite ?\n\n\n\nIntégration des cas d’usage CATIs\nTraitement des retours utilisateurs\nPoster présenté aux rencontres R 2023 à Avignon"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#et-la-suite-1",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#et-la-suite-1",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Et la suite ?",
+    "text": "Et la suite ?\n\n\n\nChantiers en cours 🏗️\n\n\n\nPérennisation de l’infrastructure (Analyses, Études et solutions possibles)\nDonnées persistantes (Solution : Stockage S3 externe)\nMonitoring et log\nAuthentification\nIntégration de Rstudio Server"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#merci-des-questions",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#merci-des-questions",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Merci ! Des questions ?",
+    "text": "Merci ! Des questions ?\n\n\n\n\nLes liens\n\n\n https://sk8.inrae.fr (Rmarkdown, obsolète)\n https://sk8.pages.mia.inra.fr/projet_sk8/ (Quarto 🏗️)\n https://docs.sk8.inrae.fr\n https://forgemia.inra.fr/sk8\n sk8-contact@groupes.renater.fr\n forum DipSO\n\n\n\n\n Slides consultables ici :  https://david.carayon.pages.mia.inra.fr/slides/talks/2023-05-26_SK8_EABX/presentation_SK8_EABX"
+  },
+  {
+    "objectID": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#slides-made-with",
+    "href": "talks/2023-05-26_SK8_EABX/presentation_SK8_EABX.html#slides-made-with",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Slides made with …",
+    "text": "Slides made with …\n\n\n\n\n\n\n https://github.com/davidcarayon/InraeThemes\n\n\n\n\nCafé données EABX | 26/05/2023"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#south-west-france-surf-beaches",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#south-west-france-surf-beaches",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "South west France surf beaches",
+    "text": "South west France surf beaches\nThe place to be ! 🌟"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#some-numbers",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#some-numbers",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Some (😨) numbers",
+    "text": "Some (😨) numbers\n\n\n\n\n\n\nCastelle et al. (2019)\n\n\n\n\n\n\nOne of the most dangerous coasts in the world (Castelle et al. 2019) : heavy rip current (Baïnes), shore break\n\n\n\n\nThousands of rescues each summer\n\n\n\n\n 20 to 30 deaths each year\n\n\n\n\nAbout \\(1\\over2\\) of swimmers bathe outside of the surveillance zone (Dehez and Lyser 2021)"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#previous-work-in-france",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#previous-work-in-france",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Previous work in France",
+    "text": "Previous work in France\n\n\n\n\nPhysical modelling of hazard for South-west France : (Castelle et al. 2019)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDrowning risk prediction using Log. Regression (Tellier et al. 2021)\nBased on emergency calls database\nProbability of a drowning occuring each day, based on weather, oceanic and crowd data"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#goal-of-this-work",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#goal-of-this-work",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Goal of this work",
+    "text": "Goal of this work\n\nSame philosophy as (Tellier et al. 2021) : Daily prediction based on weather and beach crowd\nBetter (and cleaner) data\nNew statistical methods 🌟"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#section",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#section",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "",
+    "text": "New statistical methods 🌟"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#machine-learning-in-a-nutshell",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#machine-learning-in-a-nutshell",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Machine learning 🤖 in a nutshell",
+    "text": "Machine learning 🤖 in a nutshell\n\n\n\n\n\n\n\n\n\nAI == ML == statistics & IFELSES"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#whats-a-risk",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#whats-a-risk",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "What’s a risk ?",
+    "text": "What’s a risk ?\n\nOur definition :\n\n\n\n\n\n\n\n\nHazard : Is it dangerous ?\nExposure : Is the beach crowded ?"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#the-predictors",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#the-predictors",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "The predictors",
+    "text": "The predictors\n\n\n\n\nHazard (daily maximum)\n\n\n\nWave incidence factor : \\({cos}_4H = cos((278 - D\\_{SWELL}) \\times \\frac{\\pi}{180})^4\\)\nWave factor : \\(HsTp = H_{SWELL} \\times P_{SWELL}\\)\n\n\n\n\n\n\n\n\n\nExposure\n\n\n\n\\(T_{air}\\) : air temperature in °C (3-day pred. & daily max value)\n\\(day\\) : day (ex : \\(6\\) for \\(6^{th}\\) of July)\n\\(month\\) : month (ex : \\(7\\) for July)\n\\(wday\\) : weekday (ex : \\(1\\) for monday)"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#the-outcome",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#the-outcome",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "The outcome",
+    "text": "The outcome\n\nEmergency calls database from 2011 to 2022 | N = 522\nBinary daily data (a drowning occured / no drowning occured)"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#technical-stuff",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#technical-stuff",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Technical stuff 🛠️",
+    "text": "Technical stuff 🛠️\n\n\n\nProgramming language : R\nReporting and communication : Quarto\nData wrangling and plotting : {tidyverse} ⭐\nModelling framework : {tidymodels}\nReproducible pipelines : {targets} and {renv}"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#our-challengers",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#our-challengers",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Our challengers",
+    "text": "Our challengers\n\n\n\n\n\n\n\n\n\n\n\nLogistic regression : No tuning parameters\n\n\n\nClassical regression for binary outcome\nUsed in previous work (Tellier et al. 2021)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRandom Forests : 3 tuning parameters\n\n\n\n# of trees\n# of random variables\nminimum tree depth\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nXGBoost : 4 tuning parameters\n\n\n\nsame as RF\nlearning rate\nspoiler: 🏆"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#modelling-strategy",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#modelling-strategy",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Modelling strategy",
+    "text": "Modelling strategy\n\n\n\n\nAbout these steps\n\n\nPre-processing\n\nCentering, scaling, dummy-coding\nSynthetic Minority over-Sampling Technique (SMOTE) (Chawla et al. 2002) for the outcome\nremoving correlations (\\(r &gt; 0.9\\))"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#modelling-strategy-1",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#modelling-strategy-1",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Modelling strategy",
+    "text": "Modelling strategy\n\n\n\n\nAbout these steps\n\n\n\nTuning grid generated by Latin Hypercube Sampling (Sacks et al. 1989)"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#modelling-strategy-2",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#modelling-strategy-2",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Modelling strategy",
+    "text": "Modelling strategy"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#tuning-workflow-results",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#tuning-workflow-results",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Tuning workflow results",
+    "text": "Tuning workflow results"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#i-have-bad-news",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#i-have-bad-news",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "I have bad news…",
+    "text": "I have bad news…\n\nDaily drownings events can’t be predicted with 100% precision."
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#what-would-be-the-best-model",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#what-would-be-the-best-model",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "What would be the best model ?",
+    "text": "What would be the best model ?"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#improving-accuracy-discretization",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#improving-accuracy-discretization",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Improving accuracy : Discretization",
+    "text": "Improving accuracy : Discretization\n\nThe probability output by the model is discretized using 5 classes :\n\n\nTesting set (N =600)\n\n\nRisk class\ndrownings\nNo drownings\n\n\n\n\n1\n31\n502\n\n\n2\n20\n44\n\n\n3\n4\n20\n\n\n4\n16\n11\n\n\n5\n7\n8"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#discussion",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#discussion",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Discussion",
+    "text": "Discussion\n\n\nWhat is the best drowning prediction model ? Should we prioritize lowering false negatives or false positives ? \\(\\rightarrow\\) Risk management and political decisions\n\n\n\n\nLow improvements over previous models \\(\\rightarrow\\) dataset limitation ?\n\n\n\n\nEmergency call database only covers \\(\\approx1.35\\%\\)(😱) of all rescues"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#perspectives-and-future-work",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#perspectives-and-future-work",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Perspectives and future work",
+    "text": "Perspectives and future work"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#perspectives-and-future-work-1",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#perspectives-and-future-work-1",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Perspectives and future work",
+    "text": "Perspectives and future work\nWant to try this at home ?\nTry our  📦 {DrowningAlert} on  and get in touch with us !"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#thank-you",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#thank-you",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "Thank you!",
+    "text": "Thank you!\n\n\n\nFind me online:\n david.carayon@inrae.fr\n github.com/davidcarayon\n @david_carayon\n\n Slides available here"
+  },
+  {
+    "objectID": "talks/2023-12-04_WCDP/wcdp_perth.html#references",
+    "href": "talks/2023-12-04_WCDP/wcdp_perth.html#references",
+    "title": "Using machine learning to predict drownings in surf beaches of southwest France",
+    "section": "References",
+    "text": "References\n\n\n\nD. Carayon et al. 2023 | Predicting drownings using machine learning\n\n\n\nCastelle, Bruno, Tim Scott, Rob Brander, Jak McCarroll, Arthur Robinet, Eric Tellier, Elias de Korte, Bruno Simonnet, and Louis-Rachid Salmi. 2019. “Environmental Controls on Surf Zone Injuries on High-Energy Beaches.” Natural Hazards and Earth System Sciences 19 (10): 21832205.\n\n\nChawla, N. V., K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer. 2002. “SMOTE: Synthetic Minority over-Sampling Technique.” Journal of Artificial Intelligence Research 16 (June): 321–57. https://doi.org/10.1613/jair.953.\n\n\nDehez, Jeoffrey, and Sandrine Lyser. 2021. “Fréquentation des plages océanes et risques de baignade en Aquitaine en 2020. Une étude exploratoire.” Research Report. INRAE. https://hal.science/hal-03549020.\n\n\nSacks, Jerome, William J. Welch, Toby J. Mitchell, and Henry P. Wynn. 1989. “Design and Analysis of Computer Experiments.” Statistical Science 4 (4). https://doi.org/10.1214/ss/1177012413.\n\n\nTellier, Éric, Bruno Simonnet, Cédric Gil-Jardiné, Marion Lerouge-Bailhache, Bruno Castelle, and Rachid Salmi. 2021. “Predicting Drowning from Sea and Weather Forecasts: Development and Validation of a Model on Surf Beaches of Southwestern France.” Injury Prevention 28 (1): 16–22. https://doi.org/10.1136/injuryprev-2020-044092."
+  }
+]
