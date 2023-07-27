@@ -370,7 +370,7 @@ Try our {{< fa registered >}} :package: [{DrowningAlert}](davidcarayon/drowningp
 
 <br />
 
-{{< fa brands gitlab >}} Slides available [here]()
+{{< fa brands gitlab >}} Slides available at [dcarayon.fr/slides/WCDP23/](https://dcarayon.fr/slides/WCDP23/)
 :::
 
 ::: {.column width="50%"}
