@@ -6,7 +6,7 @@ project:
   render:
     - "*.qmd"
     - "*.Rmd"
-    - "!talks/2023-03-16_TWIX/"
+    - "!talks/TWIX_SWYM/"
 
 
 
