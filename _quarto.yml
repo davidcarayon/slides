@@ -1,0 +1,13 @@
+project:
+  title: "slides"
+  output-dir: public
+  resources: banner.png
+  render:
+    - "*.qmd"
+    - "*.Rmd"
+    - "!talks/2023-03-16_TWIX/"
+
+
+
+
+

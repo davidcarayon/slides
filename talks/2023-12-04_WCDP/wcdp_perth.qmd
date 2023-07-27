@@ -1,0 +1,381 @@
+---
+title: "Using machine learning to predict drownings in surf beaches of southwest France"
+date: "2023-12-04"
+date-format: long
+author:
+  - name: "**David Carayon**"
+    orcid: 0000-0003-0217-2175
+    email: david.carayon@inrae.fr
+    institute: INRAE
+    url: https://david.carayon.pages.mia.inra.fr/site/
+  - name: Bruno Castelle
+  - name: Eric Tellier
+  - name: Bruno Simmonet
+  - name: Jeoffrey Dehez
+    orcid: 0000-0003-2604-8937
+format: 
+  revealjs:
+    include-before-body: assets/head.html
+    include-after-body: clean-title-slide.html
+    footer: "D. Carayon et al. 2023 | Predicting drownings using machine learning"
+    theme: [default, custom.scss]
+    title-slide-attributes:
+      data-footer: "<br>  <br> <img style='width:80%' src='banner.png' />"
+    logo: assets/WCDP2023_MainLogo.png
+bibliography: references.bib
+revealjs-plugins:
+  - pointer
+from: markdown+emoji
+---
+
+# Some context {.inverse-blue}
+
+<br> Should France be your next vacation destination :beach_umbrella: ?
+
+## South west France surf beaches
+
+### *The place to be !* :star2:
+
+::: columns
+::: {.column width="30%"}
+::: {.fragment .fade-right}
+![](assets/cote_argent.png){width="100%"}
+:::
+:::
+
+::: {.column width="70%"}
+::: r-stack
+![](assets/plage_porge.webp){.fragment width="100%"}
+
+![](assets/beach-nice.jpeg){.fragment width="100%"}
+
+![](assets/beach_people.avif){.fragment width="100%"}
+:::
+:::
+:::
+
+## Some (:fearful:) numbers
+
+::: columns
+::: {.column width="30%"}
+::: {.fragment .fade-right}
+![@castelle2019](assets/fig1.png)
+:::
+:::
+
+::: {.column width="70%"}
+::: {.fragment .fade-up}
+-   One of the most dangerous coasts in the world [@castelle2019] : heavy rip current (Baïnes), shore break
+:::
+
+::: {.fragment .fade-up}
+-   Thousands of rescues each summer
+:::
+
+::: {.fragment .fade-up}
+-   {{< fa warning >}} 20 to 30 deaths each year
+:::
+
+::: {.fragment .fade-up}
+-   About $1\over2$ of swimmers bathe outside of the surveillance zone [@dehezlyser]
+:::
+:::
+:::
+
+# Can we prevent drownings ? :thinking: {.inverse-blue}
+
+<br>
+
+> *Of course, there's even a world class conference about it !*
+
+# Can we <s>prevent</s> [**predict**]{style="color:purple;"} drownings ? :thinking: {.inverse-blue auto-animate="true"}
+
+> Spoiler : It was in the title
+
+## Previous work in France
+
+::: {.fragment .fade-down}
+::: columns
+::: {.column width="60%"}
+-   Physical modelling of hazard for South-west France : [@castelle2019]
+:::
+
+::: {.column width="40%"}
+![](assets/physicak.png){fig-align="center"}
+:::
+:::
+:::
+
+::: {.fragment .fade-up}
+::: columns
+::: {.column width="60%"}
+-   Drowning risk prediction using Log. Regression [@tellier2021]
+-   Based on emergency calls database
+-   Probability of a drowning occuring each day, based on weather, oceanic and crowd data
+:::
+
+::: {.column width="40%"}
+![](assets/cap_tellier.png){fig-align="center" width="60%"}
+:::
+:::
+:::
+
+## Goal of this work {auto-animate="true"}
+
+-   Same philosophy as [@tellier2021] : Daily prediction based on weather and beach crowd
+
+-   Better (and cleaner) data
+
+-   New statistical methods :star2:
+
+![](assets/logo-swym-txt.png){width="20%\"" fig-align="center"}
+
+##  {auto-animate="true"}
+
+::: {style="margin-top: 200px; font-size: 3em; color: red;"}
+New statistical methods :star2:
+:::
+
+## Machine learning :robot: in a nutshell
+
+::: columns
+::: {.column width="50%"}
+![](assets/statistics_ml_ai.jpeg){.quarto-figure-center width="80%"}
+:::
+
+::: {.column width="50%"}
+![](assets/ml_meme.jpeg){.quarto-figure-center}
+:::
+:::
+
+::: {.center .fragment .fade-up}
+### AI `==` ML `==` statistics & IFELSES
+:::
+
+# Risk modelling strategy and methods {.inverse-blue}
+
+<br> {{< fa database >}} Let's play with some data {{< fa database >}}
+
+## What's a risk ?
+
+::: fragment
+Our definition :
+:::
+
+::: fragment
+![](assets/formula.png){width="70%" fig-align="center"}
+
+-   Hazard : Is it dangerous ?
+
+-   Exposure : Is the beach crowded ?
+:::
+
+## The predictors
+
+::: {.fragment .fade-down}
+::: {.callout-warning icon="false"}
+## Hazard (daily maximum)
+
+-   **Wave incidence factor** : ${cos}_4H = cos((278 - D\_{SWELL}) \times \frac{\pi}{180})^4$
+
+-   **Wave factor** : $HsTp = H_{SWELL} \times P_{SWELL}$
+:::
+:::
+
+::: {.fragment .fade-up}
+::: {.callout-note icon="false"}
+## Exposure
+
+-   $T_{air}$ : air temperature in °C (3-day pred. & daily max value)
+
+-   $day$ : day (ex : $6$ for $6^{th}$ of July)
+
+-   $month$ : month (ex : $7$ for July)
+
+-   $wday$ : weekday (ex : $1$ for monday)
+:::
+:::
+
+## The outcome
+
+-   Emergency calls database from 2011 to 2022 \| **N = 522**
+-   Binary daily data (a drowning occured / no drowning occured)
+
+![](assets/unnamed-chunk-3-1.png)
+
+## Technical stuff :hammer_and_wrench:
+
+::: columns
+::: {.column width="50%"}
+-   Programming language : [R](https://cran.r-project.org/)
+-   Reporting and communication : [Quarto](https://quarto.org/)
+-   Data wrangling and plotting : [{tidyverse}](https://tidyverse.tidyverse.org/) :star:
+-   Modelling framework : [{tidymodels}](https://www.tidymodels.org/)
+-   Reproducible pipelines : [{targets}](https://docs.ropensci.org/targets/) and [{renv}](https://rstudio.github.io/renv/index.html)
+:::
+
+::: {.column width="50%"}
+![](assets/logo_matrix.png)
+:::
+:::
+
+## Our challengers
+
+::: columns
+::: {.column width="33%"}
+::: {.fragment .fade-right}
+![](assets/logreg.png){fig-align="center"}
+
+::: {.callout-note icon="false"}
+## Logistic regression : No tuning parameters
+
+-   Classical regression for binary outcome
+-   Used in previous work [@tellier2021]
+:::
+:::
+:::
+
+::: {.column width="33%"}
+::: {.fragment .fade-up}
+![](assets/random-forests.png){fig-align="center"}
+
+::: {.callout-note icon="false"}
+## Random Forests : 3 tuning parameters
+
+-   \# of trees
+-   \# of random variables
+-   minimum tree depth
+:::
+:::
+:::
+
+::: {.column width="33%"}
+::: {.fragment .fade-left}
+![](assets/xgboost.png){fig-align="center"}
+
+::: {.callout-note icon="false"}
+## XGBoost : 4 tuning parameters
+
+-   same as RF
+-   learning rate
+-   *spoiler: :trophy:*
+:::
+:::
+:::
+:::
+
+## Modelling strategy {auto-animate="true"}
+
+![](assets/modelling_strat_1.png)
+
+::: {.callout-note icon="false"}
+## About these steps
+
+**Pre-processing**
+
+-   Centering, scaling, dummy-coding
+-   Synthetic Minority over-Sampling Technique (SMOTE) [@chawla2002] for the outcome
+-   removing correlations ($r > 0.9$)
+:::
+
+## Modelling strategy {auto-animate="true"}
+
+![](assets/modelling_strat_3.png)
+
+::: {.callout-note icon="false"}
+## About these steps
+
+-   Tuning grid generated by Latin Hypercube Sampling [@sacks1989]
+:::
+
+## Modelling strategy {auto-animate="true"}
+
+![](assets/modelling_strat_full.png)
+
+# Results {.inverse-blue}
+
+<br>
+
+> 360 models later...
+
+## Tuning workflow results
+
+![](assets/unnamed-chunk-4-1.png)
+
+## I have bad news...
+
+::: {.fragment .fade-right}
+Daily drownings events can't be predicted with 100% precision.
+
+![](assets/shocking.jpeg){fig-align="center"}
+:::
+
+## What would be the best model ?
+
+![](assets/unnamed-chunk-5-1.png)
+
+## Improving accuracy : Discretization
+
+-   The probability output by the model is discretized using 5 classes :
+
+| Risk class | drownings | No drownings |
+|-----------:|----------:|-------------:|
+|          1 |        31 |          502 |
+|          2 |        20 |           44 |
+|          3 |         4 |           20 |
+|          4 |        16 |           11 |
+|          5 |         7 |            8 |
+
+: Testing set (N =600)
+
+## Discussion {auto-animate="true"}
+
+::: {.fragment .fade-right}
+-   **What is the best drowning prediction model** ? Should we prioritize lowering false negatives or false positives ? $\rightarrow$ Risk management and political decisions
+:::
+
+::: {.fragment .fade-right}
+-   Low improvements over previous models $\rightarrow$ dataset limitation ?
+:::
+
+::: {.fragment .fade-up}
+-   Emergency call database only covers [$\approx1.35\%$]{style="color:purple;font-size:1.4em;"}(:scream:) of all rescues
+:::
+
+## Perspectives and future work
+
+![](assets/odk_perspectives.png){fig-align="center"}
+
+## Perspectives and future work
+
+Want to try this at home ?
+
+Try our {{< fa registered >}} :package: [{DrowningAlert}](davidcarayon/drowningprediction) on {{< fa brands github >}} and get in touch with us !
+
+![](assets/hex-DrowningAlert.png){width="10%" fig-align="center"}
+
+## Thank you!
+
+<br />
+
+::: columns
+::: {.column width="50%"}
+#### Find me online:
+
+{{< fa envelope >}} [david.carayon\@inrae.fr](mailto:david.carayon@inrae.fr)
+
+{{< fa brands github >}} [github.com/davidcarayon](https://github.com/davidcarayon)
+
+{{< fa brands twitter >}} [\@david_carayon]()
+
+<br />
+
+{{< fa brands gitlab >}} Slides available [here]()
+:::
+
+::: {.column width="50%"}
+![](assets/ty.jpeg)
+:::
+:::
+
+## References

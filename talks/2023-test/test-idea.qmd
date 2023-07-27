@@ -1,0 +1,80 @@
+---
+title: "La méthode IDEA4"
+subtitle: "**I**ndicateurs de **D**urabilité des **E**xploitations **A**gricoles"
+date: today
+lang: fr  
+date-format: long
+author:
+  - name: "**David Carayon**"
+    orcid: 0000-0003-0217-2175
+    email: david.carayon@inrae.fr
+    url: https://david.carayon.pages.mia.inra.fr/site/ 
+  - name: Sydney Girard
+    email: sydney.girard@inrae.fr
+  - name: Frédéric Zahm
+    email: frederic.zahm@inrae.fr
+    orcid: 0000-0003-2604-8937
+format: 
+  revealjs:
+    title-slide-attributes:
+      data-background-image: logo.png
+      data-background-size: 40%
+      data-background-position: center
+      data-background-opacity: "0.15"
+    theme: [default, custom-idea.scss]
+    footer: "Présentation de la méthode IDEA4 | Séminaire"
+---
+
+# Introduction {.inverse-orange}
+<br>     
+What are we talking about ?
+
+## Quarto 
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+ 
+
+## Bullets
+ 
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+# Context {.inverse-green}
+<br>
+What we decided
+
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+## About machine learning
+
+![](https://i.imgflip.com/7f5fbj.jpg){.quarto-figure-center}
+
+
+## Thank you!
+
+<br />
+
+#### Find me online:
+
+{{< fa envelope >}} [david.carayon@inrae.fr](mailto:david.carayon@inrae.fr) 
+
+{{< fa globe >}} [https://david.carayon.pages.mia.inra.fr/site/](https://d avid.carayon.pages.mia.inra.fr/site/) 
+
+{{< fa brands github >}} [@davidcarayon](github.com/davidcarayon) 
+
+{{< fa brands gitlab >}} [forgemia.inra.fr/david.carayon](https://forgemia.inra.fr/users/david.carayon/) 
+
+{{< fa brands twitter >}} [@david_carayon](twitter.com/david_carayon)
+
+<br />
+
+{{< fa brands slideshare >}} Slides available [here](https://mm218.dev/boston_useR_2023)

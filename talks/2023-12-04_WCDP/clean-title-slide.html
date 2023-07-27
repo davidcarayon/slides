@@ -1,0 +1,81 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    // Add `data-footer` on title slide
+    function addCustomFooter() {
+      let titleSlide = $("section#title-slide");
+      let titleSlideFooter = titleSlide.attr('data-footer');
+      let footer = $('div.footer p');
+      let globalFooterText = footer.html();
+
+      if (titleSlide.hasClass('present')) {
+        footer.html(titleSlideFooter);
+      }
+
+      Reveal.on('slidechanged', function(event) {
+        if (event.currentSlide.matches('#title-slide')) {
+          footer.html(titleSlideFooter);
+        } else {
+          footer.html(globalFooterText);
+        }
+      });
+    }
+
+    addCustomFooter();
+
+    // Hide slide number on title slide
+    function removeSlideNumber() {
+      let slideNo = $('div.slide-number');
+      slideNo.addClass('hide');
+
+      Reveal.on('slidechanged', function(event) {
+        if (Reveal.isFirstSlide()) {
+          slideNo.addClass('hide');
+        } else {
+          slideNo.removeClass('hide');
+        }
+      });
+    }
+    
+    // Hide ground title slide
+    function removeGround() {
+      let slideNo = $('div.ground');
+      slideNo.addClass('hide');
+
+      Reveal.on('slidechanged', function(event) {
+        if (Reveal.isFirstSlide()) {
+          slideNo.addClass('hide');
+        } else {
+          slideNo.removeClass('hide');
+        }
+      });
+    }
+    
+    // Hide logo title slide
+    function removeLogo() {
+      let slideNo = $('img.slide-logo');
+      slideNo.addClass('hide');
+
+      Reveal.on('slidechanged', function(event) {
+        if (Reveal.isFirstSlide()) {
+          slideNo.addClass('hide');
+        } else {
+          slideNo.removeClass('hide');
+        }
+      });
+    }
+
+    removeSlideNumber();
+    removeGround();
+    removeLogo();
+  });
+</script>
+
+<style>
+  .hide {
+    display: none !important;
+  }
+</style>
+
+

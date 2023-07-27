@@ -1,0 +1,73 @@
+/*-- scss:defaults --*/
+$presentation-h1-font-size: 2em;
+
+
+/*-- scss:rules --*/
+.reveal h1.title {
+    font-size: 2.5em;
+    padding-bottom: 0.5em;
+    text-transform: uppercase;
+    line-height: 1em;
+    background: -webkit-linear-gradient(#0abe52, #ffc400);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reveal img.slide-logo {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 12px;
+    max-height: 1.2em;
+    height: 100%;
+    width: auto;
+}
+
+.inverse-green {
+    color: #d6d6d6;
+    h1, h2, h3 {
+      color: #f3f3f3;
+    }
+  
+    .reveal .footer > * {
+        margin-top: 0;
+        margin-bottom: 0;
+        color: white;
+    }
+
+    .slide-background-content {
+      background-color: rgb(2, 164, 99);
+    }
+  
+      .callout-caption {
+      color: $body-color;
+    }
+}
+
+.inverse-orange {
+  color: black;
+  h1, h2, h3 {
+    color: black;
+  }
+
+  .reveal .footer > * {
+      margin-top: 0;
+      margin-bottom: 0;
+      color: white;
+  }
+
+  .slide-background-content {
+    background-color: #ff9d0070;
+  }
+
+    .callout-caption {
+    color: $body-color;
+  }
+}
+
+.reveal .quarto-title-block .quarto-title-authors {
+    display: flex;
+    justify-content: center;
+    line-height: 1em;
+}

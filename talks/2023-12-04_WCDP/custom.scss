@@ -1,0 +1,153 @@
+/*-- scss:defaults --*/
+$presentation-h1-font-size: 2em;
+$presentation-font-size: 1em;
+$layout-breakpoint-small: 960px;
+$orange: #f05522;
+
+/*-- scss:rules --*/
+.reveal h1.title {
+    font-size: $presentation-h1-font-size;
+    padding-bottom: 0.5em;
+    line-height: 1em;
+    background: -webkit-linear-gradient(#f05522,rgb(28, 114, 226));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reveal h2 {
+  color: #f05522;
+}
+
+.center {
+  text-align: center;
+}
+
+.reveal .slide blockquote {
+  border-left: 3px solid $text-muted;
+  padding-left: 0.5em;
+  color: white;
+  border-color: white;
+}
+
+.reveal img.slide-logo {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 12px;
+    max-height: 1.5em;
+    height: 100%;
+    width: auto;
+}
+
+.inverse-blue {
+    color: #d6d6d6;
+    h1, h2, h3 {
+      color: #f3f3f3;
+    }
+  
+    .reveal .footer > * {
+        margin-top: 0;
+        margin-bottom: 0;
+        color: white;
+    }
+
+    .slide-background-content {
+      background-color: rgb(28, 114, 226);
+    }
+  
+      .callout-caption {
+      color: $body-color;
+    }
+}
+
+.inverse-orange {
+  color: black;
+  h1, h2, h3 {
+    color: black;
+  }
+
+  .reveal .footer > * {
+      margin-top: 0;
+      margin-bottom: 0;
+      color: white;
+  }
+
+  .slide-background-content {
+    background-color: #ff9d0070;
+  }
+
+    .callout-caption {
+    color: $body-color;
+  }
+}
+
+.reveal .quarto-title-block .quarto-title-authors {
+    display: flex;
+    justify-content: center;
+    line-height: 1em;
+}
+
+
+div.csl-bib-body {
+    font-size: 0.9em;
+}
+
+
+.ground {
+  width: 100%;
+  height: 7%;
+  background-color: rgb(28, 114, 226);
+  position: absolute;
+  bottom: 0;
+}
+
+.reveal {
+  .slide-logo {
+    top: 0;
+    
+.fragment.fade-left {
+      transform: translate(100%, 0);
+    }
+  }
+
+  .slides section {
+    .fragment {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 2s ease !important;
+      will-change: opacity;
+    }
+
+    .fragment.fade-left {
+      transform: translate(100%, 0);
+    }
+  }
+}
+
+.reveal .footer > * {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+}
+
+.reveal .slide ul li, .reveal .slide ol li {
+    font-size: 0.9em;
+}
+
+lottie-player#houses {
+  width: 800px; 
+  height: 400px; 
+  position: absolute; 
+  right: -50px; 
+  bottom: 30%;
+}
+
+@media (min-width: $layout-breakpoint-small) {
+  lottie-player#houses {
+    width: 500px; 
+    position: absolute; 
+    right: -50px; 
+    bottom: 20%;
+  }
+}
