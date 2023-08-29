@@ -1,0 +1,424 @@
+---
+title: "SK8 - Gestion et hébergement d'applications R Shiny sur des infrastructures INRAE"
+date: "2023-05-26"
+date-format: long
+lang: fr  
+author:
+  - name: "**David Carayon**"
+    orcid: 0000-0003-0217-2175
+    email: UR ETTIS <br> david.carayon@inrae.fr
+    url: https://david.carayon.pages.mia.inra.fr/site/ 
+format: 
+  inrae-revealjs:
+    footer: "Webinaire CATI CITISES | 19/09/2023"
+    theme: [custom.scss]
+    transition: none
+    code-overflow: wrap
+revealjs-plugins:
+  - pointer
+from: markdown+emoji
+---
+
+# Introduction {.inverse}
+
+## Shiny, c'est quoi ? :thinking:
+
+<br>
+
+::: columns
+::: {.column width="70%"}
+![](img/shiny.png){fig-align="center" width="80%"}
+:::
+
+::: {.column width="30%"}
+![](img/shinylogo.png){fig-align="left" width="50%"}
+:::
+:::
+
+-   Shiny est un package R qui permet de développer facilement des applications web interactives dans une syntaxe R très simple (pouvant être complétée par du HTML / CSS / JS pour les applications les plus abouties).
+
+-   Outil principalement utilisé pour l'analyse et la visualisation de données (mais pas que)
+
+## Un exemple
+
+![CI-TIQUE Tracker](img/citique.png){width="80%" fig-align="center"}
+
+## Quelques notions nécessaires
+
+**C**ontinuous **I**ntegration / **C**ontinuous **D**evelopment (CI/CD)
+
+::: columns
+::: {.column width="50%"}
+![](img/cicd.svg){width="50%" fig-align="center"}
+
+-   Suite d'instructions automatiques lors de mise à jour de code
+
+-   Permet d'appliquer des tests automatiques (sécurité) ou encore d'effectuer des actions (publication de données, pages web, etc.)
+
+-   Piloté par exemple par un fichier `.gitlab-ci.yml`
+:::
+
+::: {.column width="50%"}
+``` {.yml filename="gitlab-ci.yml"}
+01-Publier:
+  stage: Gérer mon application
+  needs: ["Construire-l-application"]
+  image: curlimages/curl:latest
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == "true"'
+      when: on_success
+      allow_failure: false
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == "false"'
+      when: manual
+      allow_failure: true
+  before_script:
+    - ACTION=$SK8_DEPLOY
+  script:
+    - *commande-job
+```
+:::
+:::
+
+## Quelques notions nécessaires
+
+**Docker**
+
+::: columns
+::: {.column width="50%"}
+![](img/docker.png)
+
+-   Permet de *Containeuriser* des logiciels, applications
+
+-   Création d'une *image* Docker à partir d'une recette : le `Dockerfile`
+
+-   Facilite la diffusion (gestion des dépendances systèmes, etc.)
+:::
+
+::: {.column width="50%"}
+``` {.Dockerfile filename="Dockerfile"}
+FROM rocker/verse:4.2.1
+RUN apt-get update && apt-get install -y  cmake imagemagick libcurl4-openssl-dev [...]
+RUN mkdir -p /usr/local/lib/R/etc/ /usr/lib/R/etc/
+RUN echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)"
+RUN R -e 'install.packages("remotes")'
+RUN Rscript -e 'remotes::install_version("magrittr",upgrade="never", version = "2.0.3")'
+RUN Rscript -e 'remotes::install_version("htmltools",upgrade="never", version = "0.5.5")'
+[...]
+RUN Rscript -e 'remotes::install_github("rstudio/sass@2f1f152d84c162ccb9aba1c056e3548079d669d9")'
+RUN mkdir /build_zone
+ADD . /build_zone
+WORKDIR /build_zone
+RUN R -e 'remotes::install_local(upgrade="never")'
+RUN rm -rf /build_zone
+EXPOSE 3838
+CMD R -e "options('shiny.port'=3838,shiny.host='0.0.0.0');ShinyIDEA::run_app()"
+```
+:::
+:::
+
+## Quelques notions nécessaires
+
+**Kubernetes**
+
+{{< fa caret-right >}} Solution permettant de distribuer intelligemment des container Docker aux utilisateurs.
+
+![](img/k8s_archi1.png){width="70%" fig-align="center"}
+
+# Les applications Shiny à INRAE {.inverse}
+
+## Plusieurs constats...
+
+<br>
+
+::: {.incremental .smaller}
+-   {{< fa globe >}} Les applications R Shiny sont de plus en plus présentes dans notre environnement
+
+-   {{< fa laptop >}} Peuvent être développées par des néophytes comme par des développeurs chevronnés
+
+-   {{< fa share-nodes >}} Formidable outil de partage / valorisation et démocratisation des travaux menés dans l'institut
+
+-   {{< fa bug >}} Problématique majeure et récurrente autour de l'**hébergement** :weary:
+:::
+
+## Solutions existantes d'hébergement
+
+<center>
+
+<br/>
+
+::: columns
+::: {.column width="50%"}
+::: {.callout-note appearance="simple" icon="false"}
+## Solutions d'hébergement propriétaires
+
+<br/>
+
+![](img/Posit-logo-h-full-color-RGB-TM.svg){width="80%" fig-align="center"} ![](img/DO.png){width="90%" fig-align="center"}
+:::
+:::
+
+::: {.column width="50%"}
+::: {.callout-note appearance="minimal" icon="false"}
+## Rapprochement Shiny/Docker
+
+<br/>
+
+![](img/shinyproxy-docker-shiny.png){fig-align="center"}
+:::
+:::
+:::
+
+</center>
+
+## Solutions existantes à INRAE
+
+-   Multiples solutions ShinyServer OpenSource locales
+
+-   Très limitées et problématiques en termes d'administration :warning:
+
+::: {.callout-tip icon="true"}
+## Une solution intéressante à l'échelle d'une unité (BioSP)
+
+-   ShinyProxy (Docker) <https://shiny.biosp.inrae.fr>
+-   Gestion du code via GitLab CI/CD
+-   Applications conteneurisées
+-   Abstraction et meilleure gestion de la partie système
+:::
+
+# Projet SK8 : Une réponse plus globale {.inverse}
+
+## Le projet SK8
+
+<center>
+
+![R-**S**hiny **K**ubernetes **S**ervice $\rightarrow$ SK8SS $\rightarrow$ **SK8** :skateboard:](img/SK8-logo-trans.png){fig-align="center" width="300px"}
+
+</center>
+
+## Le projet SK8 : Pourquoi ?
+
+::: {.callout-note icon="false"}
+## Besoins en augmentation d'hébergement d'apps Shiny
+
+-   Facile d'accès, pérenne et évolutif
+-   Scalable (élastique)
+-   Sécurisé {{< fa solid shield-halved >}}
+:::
+
+::: fragment
+::: {.callout-tip icon="false"}
+## Finalité
+
+-   Avoir une meilleure visibilité et harmonisation des travaux de l'institut {{< fa brands slideshare >}}
+:::
+:::
+
+::: fragment
+::: {.callout-important icon="false"}
+## Contrainte forte
+
+-   Doit rester dans l'institut
+-   Doit répondre aux besoins des agents
+:::
+:::
+
+## Déroulé du projet
+
+::: {.incremental
+-   Projet d'unité BioSP 2019, porté par [Jean-François Rey](mailto:jean-francois-rey@inrae.fr) $\rightarrow$ CATI IMOTEP
+
+-   V1 (2021) : Etude de faisabilité, état des lieux INRAE, création des groupes de travail
+
+-   V2 (2022) : Passage d'un projet CATI-IMOTEP $\rightarrow$ Inter-CATIs et ouverture de la version Bêta
+
+-   V2 (2023) : Passage de l'infra en version `kickflip`, refonte quarto documentation & site web
+:::
+
+::: {.fragment .fade-in-then-out}
+![](img/kickflip.gif){.absolute top="200" left="230" width="400" height="400"}
+:::
+
+::: fragment
+::: callout-note
+## Qui paye ? :euro:
+
+-   Financements SAPI & DipSO 2022/2023 (Formation et hackatons)
+-   Financements futurs (+ pérennisation) en cours de recherche
+:::
+:::
+
+## Le projet SK8 : C'est qui ?
+
+-   $\approx$ 30 ITA ($\approx$ 15 actifs, noyau dur de 5 agents)
+
+-   $\neq$ CATIs (10), Unités, Départements scientifiques et directions
+
+-   Statisticiens, Bioinformaticiens, DevOps, Administrateurs systèmes...
+
+-   2 groupes de travail, réunions mensuelles :
+
+    -   Groupe **Utilisateurs** {{< fa code >}}
+
+    -   Groupe **DevOps** {{< fa server >}}
+
+## Le projet SK8 : C'est qui ?
+
+<br/>
+
+::: columns
+::: {.column width="45%"}
+![](img/photo_sk8_team.jpeg){fig-align="center" width="75%"}
+:::
+
+::: {.column width="45%"}
+![](img/dessin_groupes.png){fig-align="center" width="80%"}
+:::
+:::
+
+# SK8 : Ca marche comment ? {.inverse}
+
+## Infrastructure générale
+
+<br/>
+
+<center>
+
+![*Schéma simplifié du fonctionnement*](img/wflow_sk8.png){fig-align="center"}
+
+<center>
+
+## Du point de vue utilisateur {.smaller}
+
+![](img/wflow.png){fig-align="center" width="65%"}
+
+::: incremental
+-   Demande d'hébergement : :new: <https://demande-hebergement.sk8.inrae.fr> :new:
+-   Création automatique d'une issue sur le support <https://forgemia.inra.fr/sk8/sk8-support/>
+-   Création d'un projet (app) sous <https://forgemia.inra.fr/sk8/sk8-apps/>
+-   L'utilisateur ajoute son code : `git clone | add | commit | push`
+-   Application disponible : <https://sk8-demo.sk8.inrae.fr>
+:::
+
+## Le catalogue SK8
+
+<br>
+
+::: columns
+::: {.column width="60%"}
+::: callout-tip
+## L'utilisation d'un catalogue (via ShinyProxy) permet
+
+-   De disposer d'un hub centralisé qui référence toutes les applications
+
+-   De déployer une instance distincte pour chaque utilisateur d'une application
+:::
+:::
+
+::: {.column width="40%"}
+<center>
+
+![](img/catalogue.png){fig-align="center" width="80%"}
+
+<https://shiny.sk8.inrae.fr>
+
+</center>
+:::
+:::
+
+## Focus app demande d'hébergement
+
+::: columns
+::: {.column width="50%"}
+-   Développé avec [{shinysurveys}](https://shinysurveys.jdtrat.com/)
+
+-   Connexion OAuth via la ForgeMIA (API GitLab {{< fa brands gitlab >}})
+
+-   Listes déroulantes personnalisées en fonction de l'utilisateur ({{< fa brands gitlab >}})
+
+-   Possibilité d'upload un logo pour l'app : API pour l'intégrer dans une issue GitLab
+
+-   Création du corps markdown d'une issue remplie avec les infos saisies (`{glue}`)
+
+-   Envoi d'un mail à l'utilisateur (serveur SMTP : `dix-sk8`)
+:::
+
+::: {.column width="50%"}
+<center>![](img/2023-03-23-14-41-47.png) ![](img/surveys){width="30%" fig-align="center"}</center>
+:::
+:::
+
+# :skateboard: SK8 : Un projet qui roule comme sur des roulettes ? :skateboard: {.inverse}
+
+## Bilan
+
+-   :white_check_mark: Plateforme ouverte en version bêta :white_check_mark:
+
+-   :warning: **Les use-case les plus complexes sont les bienvenus pour tester le service !** :warning:
+
+-   Travail innovant mêlant de nombreuses technologies (R, Docker, Gitlab, CI/CD...)
+
+-   Projet mêlant une grande diversité de profils au travers de 10 CATIs
+
+-   Améliorations à venir au fil des travaux des groupes Users & Devops...
+
+-   ... Mais principalement basé sur du volontariat !
+
+## Et la suite ?
+
+::: columns
+::: {.column width="50%"}
+-   Intégration des cas d'usage CATIs
+
+-   Traitement des retours utilisateurs
+
+-   Poster présenté aux rencontres R 2023 à Avignon classé **1er** :trophy:
+:::
+
+::: {.column width="50%"}
+![](img/poster.png){width="80%" fig-align="center"}
+:::
+:::
+
+## Et la suite ?
+
+::: {.callout-warning icon="false"}
+## Chantiers en cours :building_construction:
+
+-   Pérennisation de l'infrastructure (Analyses, Études et solutions possibles)
+-   Données persistantes (Solution : Stockage S3 externe)
+-   Monitoring et log
+-   Authentification
+-   Intégration de Rstudio Server
+:::
+
+## Merci ! Des questions ?
+
+<br />
+
+::: {.callout-note appearance="minimal"}
+## Les liens
+
+{{< fa globe >}} <https://sk8.inrae.fr> 
+
+{{< fa book >}} <https://docs.sk8.inrae.fr>
+
+{{< fa brands gitlab >}} <https://forgemia.inra.fr/sk8>
+
+{{< fa envelope >}} [sk8-contact\@groupes.renater.fr](mailto:sk8-contact@groupes.renater.fr)
+
+{{< fa comment-dots >}} [forum DipSO](https://forum.dipso.inrae.fr/t/r-shiny-service-hebergement-inrae/)
+:::
+
+<br />
+
+{{< fa brands slideshare >}} Slides consultables ici : <br> <https://david.carayon.pages.mia.inra.fr/slides/talks/CITISES_SK8/>
+
+## Slides made with ... {.plain}
+
+<center>
+
+![](img/inraethemes.png){width="400px" fig-align="center"}
+
+{{< fa brands github >}} <https://github.com/davidcarayon/InraeThemes>
+
+</center>

@@ -1,0 +1,15 @@
+/*-- scss:defaults --*/
+$presentation-h1-font-size: 2em;
+
+/*-- scss:rules --*/
+.reveal ul ol li {
+  font-size: 0.7em;
+  color: $inrae-sombre;
+}
+
+.reveal .quarto-title-block .quarto-title-authors {
+    display: flex;
+    justify-content: center;
+    line-height: 1em;
+}
+
