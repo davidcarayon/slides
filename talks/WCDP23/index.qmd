@@ -350,9 +350,9 @@ Daily drownings events can't be predicted with 100% precision.
 
 Want to try this at home ?
 
-Try our {{< fa registered >}} :package: [{DrowningAlert}](davidcarayon/drowningprediction) on {{< fa brands github >}} and get in touch with us !
+Try our {{< fa registered >}} :package: [{DrowningPrediction}](davidcarayon/drowningprediction) on {{< fa brands github >}} and get in touch with us !
 
-![](assets/hex-DrowningAlert.png){width="10%" fig-align="center"}
+![](assets/DrowningPrediction.png){width="10%" fig-align="center"}
 
 ## Thank you!
 
