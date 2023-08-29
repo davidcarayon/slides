@@ -352,7 +352,7 @@ Want to try this at home ?
 
 Try our {{< fa registered >}} :package: [{DrowningPrediction}](davidcarayon/drowningprediction) on {{< fa brands github >}} and get in touch with us !
 
-![](assets/DrowningPrediction.png){width="10%" fig-align="center"}
+![](assets/DrowningPrediction.png){width="5%" fig-align="center"}
 
 ## Thank you!
 
