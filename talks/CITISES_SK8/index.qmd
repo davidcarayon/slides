@@ -1,6 +1,6 @@
 ---
 title: "SK8 - Gestion et hébergement d'applications R Shiny sur des infrastructures INRAE"
-date: "2023-05-26"
+date: "2023-09-19"
 date-format: long
 lang: fr  
 author:
@@ -411,7 +411,7 @@ CMD R -e "options('shiny.port'=3838,shiny.host='0.0.0.0');ShinyIDEA::run_app()"
 
 <br />
 
-{{< fa brands slideshare >}} Slides consultables ici : <br> <https://david.carayon.pages.mia.inra.fr/slides/talks/CITISES_SK8/>
+{{< fa brands slideshare >}} Slides consultables ici : <br> <https://davidcarayon.github.io/slides/talks/CITISES_SK8/>
 
 ## Slides made with ... {.plain}
 
