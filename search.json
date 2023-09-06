@@ -11,7 +11,7 @@
     "href": "talks/WCDP23/index.html#some-numbers",
     "title": "Using machine learning to predict drownings in surf beaches of southwest France",
     "section": "Some (😨) numbers",
-    "text": "Some (😨) numbers\n\n\n\n\n\n\nCastelle et al. (2019)\n\n\n\n\n\n\nOne of the most dangerous coasts in the world (Castelle et al. 2019) : heavy rip current (Baïnes), shore break\n\n\n\n\nThousands of rescues each summer\n\n\n\n\n 20 to 30 deaths each year\n\n\n\n\nAbout \\(1\\over2\\) of swimmers bathe outside of the surveillance zone (Dehez and Lyser 2021)"
+    "text": "Some (😨) numbers\n\n\n\n\n\n\nCastelle et al. (2019)\n\n\n\n\n\n\nOne of the most dangerous coasts in the world (Castelle et al. 2019) : heavy rip current (Baïnes), shore break\n\n\n\n\nSurveillance mainly during summer : Thousands of rescues each year\n\n\n\n\n 20 to 30 fatal drownings each year  (💪 0 between the flags)\n\n\n\n\nAbout \\(1\\over2\\) of swimmers bathe outside of the surveillance zone (Dehez and Lyser 2021)"
   },
   {
     "objectID": "talks/WCDP23/index.html#previous-work-in-france",
@@ -60,7 +60,7 @@
     "href": "talks/WCDP23/index.html#the-outcome",
     "title": "Using machine learning to predict drownings in surf beaches of southwest France",
     "section": "The outcome",
-    "text": "The outcome\n\nEmergency calls database from 2011 to 2022 | N = 522\nBinary daily data (a drowning occured / no drowning occured)"
+    "text": "The outcome\n\nWater inhalation & respiratory impairements (leads to emergency calls)\nEmergency calls database from 2011 to 2022 | N = 522\nBinary daily data (a drowning occured / no drowning occured)"
   },
   {
     "objectID": "talks/WCDP23/index.html#technical-stuff",
@@ -130,7 +130,7 @@
     "href": "talks/WCDP23/index.html#discussion",
     "title": "Using machine learning to predict drownings in surf beaches of southwest France",
     "section": "Discussion",
-    "text": "Discussion\n\n\nWhat is the best drowning prediction model ? Should we prioritize lowering false negatives or false positives ? \\(\\rightarrow\\) Risk management and political decisions\n\n\n\n\nLow improvements over previous models \\(\\rightarrow\\) dataset limitation ?\n\n\n\n\nEmergency call database only covers \\(\\approx1.35\\%\\)(😱) of all rescues"
+    "text": "Discussion\n\n\nWhat is the best drowning prediction model ? Should we prioritize lowering false negatives or false positives ? \\(\\rightarrow\\) Risk management and political decisions\n\n\n\n\nLow improvements over previous models \\(\\rightarrow\\) dataset limitation ?\n\n\n\n\n\n\nEmergency call database only covers a minority(😱) of all rescues"
   },
   {
     "objectID": "talks/WCDP23/index.html#perspectives-and-future-work",
