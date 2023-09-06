@@ -69,11 +69,11 @@ from: markdown+emoji
 :::
 
 ::: {.fragment .fade-up}
--   Thousands of rescues each summer
+-   Surveillance mainly during summer : Thousands of rescues each year
 :::
 
 ::: {.fragment .fade-up}
--   {{< fa warning >}} 20 to 30 deaths each year
+-   {{< fa warning >}} 20 to 30 fatal drownings each year <br> (:muscle: 0 between the flags)
 :::
 
 ::: {.fragment .fade-up}
@@ -198,6 +198,7 @@ Our definition :
 
 ## The outcome
 
+-   Water inhalation & respiratory impairements (leads to emergency calls)
 -   Emergency calls database from 2011 to 2022 \| **N = 522**
 -   Binary daily data (a drowning occured / no drowning occured)
 
@@ -339,7 +340,24 @@ Daily drownings events can't be predicted with 100% precision.
 :::
 
 ::: {.fragment .fade-up}
--   Emergency call database only covers [$\approx1.35\%$]{style="color:purple;font-size:1.4em;"}(:scream:) of all rescues
+
+:::: {.columns}
+
+::: {.column width="40%"}
+-   Emergency call database only covers [a minority]{style="color:purple;font-size:1.4em;"}(:scream:) of all rescues
+:::
+
+::: {.column width="60%"}
+![](assets/source.jpeg){width="40%" fig-align="center"}
+:::
+
+::::
+
+
+
+
+
+
 :::
 
 ## Perspectives and future work
