@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/davidcarayon/slides/talks/WCDP23/index.html</loc>
-    <lastmod>2023-09-06T14:01:15.288Z</lastmod>
+    <loc>https://davidcarayon.github.io/slides/talks/WCDP23/index.html</loc>
+    <lastmod>2024-05-22T10:21:49.059Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/davidcarayon/slides/talks/CITISES_SK8/index.html</loc>
-    <lastmod>2023-09-06T14:01:11.791Z</lastmod>
+    <loc>https://davidcarayon.github.io/slides/talks/EABX_SK8/index.html</loc>
+    <lastmod>2024-05-22T10:21:48.851Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/davidcarayon/slides/talks/2023-test/test-idea.html</loc>
-    <lastmod>2023-09-06T14:01:09.212Z</lastmod>
+    <loc>https://davidcarayon.github.io/slides/talks/2023-test/test-idea.html</loc>
+    <lastmod>2024-05-22T10:21:48.787Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/davidcarayon/slides/talks/EABX_SK8/index.html</loc>
-    <lastmod>2023-09-06T14:01:14.467Z</lastmod>
+    <loc>https://davidcarayon.github.io/slides/talks/CITISES_SK8/index.html</loc>
+    <lastmod>2024-05-22T10:21:48.819Z</lastmod>
+  </url>
+  <url>
+    <loc>https://davidcarayon.github.io/slides/talks/INSEE-VSCODE/index.html</loc>
+    <lastmod>2024-05-22T10:21:48.867Z</lastmod>
   </url>
 </urlset>

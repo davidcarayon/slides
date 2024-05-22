@@ -12,8 +12,8 @@
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.554">
 
-  <meta name="author" content="David Carayon">
-  <title>slides - SK8 - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE</title>
+  <meta name="author" content="David CARAYON">
+  <title>slides - VSCode pour faire du R : une (R)évolution ?</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -31,71 +31,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -393,487 +328,155 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="../../site_libs/quarto-contrib/quarto-project/davidcarayon/inrae/ressources/assets/sigle-inrae.png" data-background-opacity="0.5" data-background-position="left" data-background-size="40%" data-footer="" class="quarto-title-block center">
-  <h1 class="title">SK8 - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE</h1>
+<section id="title-slide" data-background-image="../../site_libs/quarto-contrib/quarto-project/davidcarayon/inrae/ressources/assets/sigle-inrae.png" data-background-opacity="0.5" data-background-position="left" data-background-size="40%" data-footer="<a rel='license' href='https://www.etalab.gouv.fr/licence-ouverte-open-licence/'><img alt='Creative Commons License' style='border-width:0; width:200px' src='https://www.etalab.gouv.fr/wp-content/uploads/2011/10/licence-ouverte-open-licence.gif' /><br></a>Présentation diffusée sous <a rel='license' href='https://www.etalab.gouv.fr/licence-ouverte-open-licence/'>Licence ouverte</a>." class="quarto-title-block center">
+  <h1 class="title">VSCode pour faire du R : une (<strong>R</strong>)évolution ?</h1>
+  <p class="subtitle">Présentation de l’IDE et retour d’expérience</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-<a href="https://david.carayon.pages.mia.inra.fr/site/"><strong>David Carayon</strong></a> <a href="https://orcid.org/0000-0003-0217-2175" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+<a href="https://dcarayon.fr"><strong>David CARAYON</strong></a> <a href="https://orcid.org/0000-0003-0217-2175" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
 </div>
 <div class="quarto-title-author-email">
-<a href="mailto:UR ETTIS <br> david.carayon@inrae.fr">UR ETTIS <br> david.carayon@inrae.fr</a>
+<a href="mailto:Statisticien/Data Scientist @ UR ETTIS <br> david.carayon@inrae.fr">Statisticien/Data Scientist @ UR ETTIS <br> david.carayon@inrae.fr</a>
 </div>
 </div>
 </div>
 
-  <p class="date">19 septembre 2023</p>
+  <p class="date">lundi 3 juin 2024</p>
 </section>
 <section>
 <section id="introduction" class="title-slide slide level1 inverse center">
 <h1>Introduction</h1>
 
 </section>
-<section id="shiny-cest-quoi" class="slide level2">
-<h2>Shiny, c’est quoi ? <span class="emoji" data-emoji="thinking">🤔</span></h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:70%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/shiny.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div><div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-left">
-<figure>
-<p><img data-src="img/shinylogo.png" class="quarto-figure quarto-figure-left" style="width:50.0%"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="bonjour" class="slide level2">
+<h2>Bonjour <span class="emoji" data-emoji="wave">👋</span></h2>
+<div>
 <ul>
-<li><p>Shiny est un package R qui permet de développer facilement des applications web interactives dans une syntaxe R très simple (pouvant être complétée par du HTML / CSS / JS pour les applications les plus abouties).</p></li>
-<li><p>Outil principalement utilisé pour l’analyse et la visualisation de données (mais pas que)</p></li>
+<li class="fragment">Statisticien @ INRAE | UR “ETTIS”</li>
+<li class="fragment">Ecologue de formation ayant mal tourné</li>
+<li class="fragment">R nerd depuis ~10ans : Packages R, Applis Shiny, extensions Quarto</li>
+<li class="fragment">Propageur de bonnes pratiques (renv, targets, tidyverse/models)</li>
+<li class="fragment">Apprenti devops (gitlab cicd, docker, k8s) -&gt; Projet <a href="https://sk8.inrae.fr">SK8</a></li>
 </ul>
-</section>
-<section id="un-exemple" class="slide level2">
-<h2>Un exemple</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/citique.png" style="width:80.0%"></p>
-<figcaption>CI-TIQUE Tracker</figcaption>
-</figure>
-</div>
-</section>
-<section id="quelques-notions-nécessaires" class="slide level2">
-<h2>Quelques notions nécessaires</h2>
-<p><strong>C</strong>ontinuous <strong>I</strong>ntegration / <strong>C</strong>ontinuous <strong>D</strong>evelopment (CI/CD)</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/cicd.svg" class="quarto-figure quarto-figure-center" style="width:50.0%"></p>
-</figure>
-</div>
-<ul>
-<li><p>Suite d’instructions automatiques lors de mise à jour de code</p></li>
-<li><p>Permet d’appliquer des tests automatiques (sécurité) ou encore d’effectuer des actions (publication de données, pages web, etc.)</p></li>
-<li><p>Piloté par exemple par un fichier <code>.gitlab-ci.yml</code></p></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>gitlab-ci.yml</strong></pre>
-</div>
-<div class="sourceCode" id="cb1" data-filename="gitlab-ci.yml"><pre class="sourceCode numberSource yml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a></a><span class="fu">01-Publier</span><span class="kw">:</span></span>
-<span id="cb1-2"><a></a><span class="at">  </span><span class="fu">stage</span><span class="kw">:</span><span class="at"> Gérer mon application</span></span>
-<span id="cb1-3"><a></a><span class="at">  </span><span class="fu">needs</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Construire-l-application"</span><span class="kw">]</span></span>
-<span id="cb1-4"><a></a><span class="at">  </span><span class="fu">image</span><span class="kw">:</span><span class="at"> curlimages/curl:latest</span></span>
-<span id="cb1-5"><a></a><span class="at">  </span><span class="fu">rules</span><span class="kw">:</span></span>
-<span id="cb1-6"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">if</span><span class="kw">:</span><span class="at"> </span><span class="st">'$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH &amp;&amp; $MISE_A_JOUR_AUTOMATIQUE == "true"'</span></span>
-<span id="cb1-7"><a></a><span class="at">      </span><span class="fu">when</span><span class="kw">:</span><span class="at"> on_success</span></span>
-<span id="cb1-8"><a></a><span class="at">      </span><span class="fu">allow_failure</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb1-9"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">if</span><span class="kw">:</span><span class="at"> </span><span class="st">'$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH &amp;&amp; $MISE_A_JOUR_AUTOMATIQUE == "false"'</span></span>
-<span id="cb1-10"><a></a><span class="at">      </span><span class="fu">when</span><span class="kw">:</span><span class="at"> manual</span></span>
-<span id="cb1-11"><a></a><span class="at">      </span><span class="fu">allow_failure</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb1-12"><a></a><span class="at">  </span><span class="fu">before_script</span><span class="kw">:</span></span>
-<span id="cb1-13"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> ACTION=$SK8_DEPLOY</span></span>
-<span id="cb1-14"><a></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span></span>
-<span id="cb1-15"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="ot">*commande-job</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="quelques-notions-nécessaires-1" class="slide level2">
-<h2>Quelques notions nécessaires</h2>
-<p><strong>Docker</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src="img/docker.png"></p>
-<ul>
-<li><p>Permet de <em>Containeuriser</em> des logiciels, applications</p></li>
-<li><p>Création d’une <em>image</em> Docker à partir d’une recette : le <code>Dockerfile</code></p></li>
-<li><p>Facilite la diffusion (gestion des dépendances systèmes, etc.)</p></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Dockerfile</strong></pre>
-</div>
-<div class="sourceCode" id="cb2" data-filename="Dockerfile"><pre class="sourceCode numberSource Dockerfile number-lines code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a></a><span class="kw">FROM</span> rocker/verse:4.2.1</span>
-<span id="cb2-2"><a></a><span class="kw">RUN</span> <span class="ex">apt-get</span> update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span>  cmake imagemagick libcurl4-openssl-dev <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span></span>
-<span id="cb2-3"><a></a><span class="kw">RUN</span> <span class="fu">mkdir</span> <span class="at">-p</span> /usr/local/lib/R/etc/ /usr/lib/R/etc/</span>
-<span id="cb2-4"><a></a><span class="kw">RUN</span> <span class="bu">echo</span> <span class="st">"options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)"</span></span>
-<span id="cb2-5"><a></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-e</span> <span class="st">'install.packages("remotes")'</span></span>
-<span id="cb2-6"><a></a><span class="kw">RUN</span> <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'remotes::install_version("magrittr",upgrade="never", version = "2.0.3")'</span></span>
-<span id="cb2-7"><a></a><span class="kw">RUN</span> <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'remotes::install_version("htmltools",upgrade="never", version = "0.5.5")'</span></span>
-<span id="cb2-8"><a></a>[...]</span>
-<span id="cb2-9"><a></a><span class="kw">RUN</span> <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'remotes::install_github("rstudio/sass@2f1f152d84c162ccb9aba1c056e3548079d669d9")'</span></span>
-<span id="cb2-10"><a></a><span class="kw">RUN</span> <span class="fu">mkdir</span> /build_zone</span>
-<span id="cb2-11"><a></a><span class="kw">ADD</span> . /build_zone</span>
-<span id="cb2-12"><a></a><span class="kw">WORKDIR</span> /build_zone</span>
-<span id="cb2-13"><a></a><span class="kw">RUN</span> <span class="ex">R</span> <span class="at">-e</span> <span class="st">'remotes::install_local(upgrade="never")'</span></span>
-<span id="cb2-14"><a></a><span class="kw">RUN</span> <span class="fu">rm</span> <span class="at">-rf</span> /build_zone</span>
-<span id="cb2-15"><a></a><span class="kw">EXPOSE</span> 3838</span>
-<span id="cb2-16"><a></a><span class="kw">CMD</span> <span class="ex">R</span> <span class="at">-e</span> <span class="st">"options('shiny.port'=3838,shiny.host='0.0.0.0');ShinyIDEA::run_app()"</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="quelques-notions-nécessaires-2" class="slide level2">
-<h2>Quelques notions nécessaires</h2>
-<p><strong>Kubernetes</strong></p>
-<p><i class="fa-solid fa-caret-right" aria-label="caret-right"></i> Solution permettant de distribuer intelligemment des container Docker aux utilisateurs.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/k8s_archi1.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
-</figure>
-</div>
-</section></section>
-<section>
-<section id="les-applications-shiny-à-inrae" class="title-slide slide level1 inverse center">
-<h1>Les applications Shiny à INRAE</h1>
-
-</section>
-<section id="plusieurs-constats" class="slide level2">
-<h2>Plusieurs constats…</h2>
-<p><br></p>
-<div class="smaller">
-<ul>
-<li class="fragment"><p><i class="fa-solid fa-globe" aria-label="globe"></i> Les applications R Shiny sont de plus en plus présentes dans notre environnement</p></li>
-<li class="fragment"><p><i class="fa-solid fa-laptop" aria-label="laptop"></i> Peuvent être développées par des néophytes comme par des développeurs chevronnés</p></li>
-<li class="fragment"><p><i class="fa-solid fa-share-nodes" aria-label="share-nodes"></i> Formidable outil de partage / valorisation et démocratisation des travaux menés dans l’institut</p></li>
-<li class="fragment"><p><i class="fa-solid fa-bug" aria-label="bug"></i> Problématique majeure et récurrente autour de l’<strong>hébergement</strong> <span class="emoji" data-emoji="weary">😩</span></p></li>
-</ul>
-</div>
-</section>
-<section id="solutions-existantes-dhébergement" class="slide level2">
-<h2>Solutions existantes d’hébergement</h2>
-<center>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="callout callout-note no-icon callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Solutions d’hébergement propriétaires</strong></p>
-</div>
-<div class="callout-content">
-<p><br></p>
-<p><img data-src="img/Posit-logo-h-full-color-RGB-TM.svg" class="quarto-figure quarto-figure-center" style="width:80.0%"> <img data-src="img/DO.png" class="quarto-figure quarto-figure-center" style="width:90.0%"></p>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="callout callout-note no-icon callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Rapprochement Shiny/Docker</strong></p>
-</div>
-<div class="callout-content">
-<p><br></p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/shinyproxy-docker-shiny.png" class="quarto-figure quarto-figure-center"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</center>
-</section>
-<section id="solutions-existantes-à-inrae" class="slide level2">
-<h2>Solutions existantes à INRAE</h2>
-<ul>
-<li><p>Multiples solutions ShinyServer OpenSource locales</p></li>
-<li><p>Très limitées et problématiques en termes d’administration <span class="emoji" data-emoji="warning">⚠️</span></p></li>
-</ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Une solution intéressante à l’échelle d’une unité (BioSP)</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>ShinyProxy (Docker) <a href="https://shiny.biosp.inrae.fr" class="uri">https://shiny.biosp.inrae.fr</a></li>
-<li>Gestion du code via GitLab CI/CD</li>
-<li>Applications conteneurisées</li>
-<li>Abstraction et meilleure gestion de la partie système</li>
-</ul>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="projet-sk8-une-réponse-plus-globale" class="title-slide slide level1 inverse center">
-<h1>Projet SK8 : Une réponse plus globale</h1>
-
-</section>
-<section id="le-projet-sk8" class="slide level2">
-<h2>Le projet SK8</h2>
-<center>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/SK8-logo-trans.png" width="300"></p>
-<figcaption>R-<strong>S</strong>hiny <strong>K</strong>ubernetes <strong>S</strong>ervice <span class="math inline">\(\rightarrow\)</span> SK8SS <span class="math inline">\(\rightarrow\)</span> <strong>SK8</strong> <span class="emoji" data-emoji="skateboard">🛹</span></figcaption>
-</figure>
-</div>
-</center>
-</section>
-<section id="le-projet-sk8-pourquoi" class="slide level2">
-<h2>Le projet SK8 : Pourquoi ?</h2>
-<div class="callout callout-note no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Besoins en augmentation d’hébergement d’apps Shiny</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Facile d’accès, pérenne et évolutif</li>
-<li>Scalable (élastique)</li>
-<li>Sécurisé <i class="fa-solid fa-shield-halved" aria-label="shield-halved"></i></li>
-</ul>
-</div>
-</div>
 </div>
 <div class="fragment">
-<div class="callout callout-tip no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Finalité</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Avoir une meilleure visibilité et harmonisation des travaux de l’institut <i class="fa-brands fa-slideshare" aria-label="slideshare"></i></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-important no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Contrainte forte</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Doit rester dans l’institut</li>
-<li>Doit répondre aux besoins des agents</li>
-</ul>
-</div>
-</div>
-</div>
+<p align="center">
+<a href="https://github.com/topics/r" title="R"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/r/r.png" alt="R logo" width="36" height="36"></a> <a href="https://github.com/topics/python" title="Python"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="python logo" width="36" height="36"></a> <a href="https://github.com/topics/postgresql" title="PostgreSQL"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/postgresql/postgresql.png" alt="postgresql logo" width="36" height="36"></a> <a href="https://github.com/topics/quarto" title="Git"><img src="https://raw.githubusercontent.com/github/explore/80f119e965a9a3df7b74c3f7b63a502e3d0ded36/topics/quarto/quarto.png" alt="quarto logo" width="36" height="36"></a> <a href="https://github.com/topics/tidyverse" title="Git"><img src="https://avatars.githubusercontent.com/u/22032646?s=200&amp;v=4" alt="tidyverse logo" width="36" height="36"></a> <a href="https://github.com/topics/tidymodels" title="Git"><img src="https://github.com/tidymodels/tidymodels/raw/main/man/figures/logo.png" alt="tidymodels logo" width="36" height="36"></a> <a href="https://github.com/topics/shiny" title="Git"><img src="https://github.com/rstudio/shiny/raw/main/man/figures/logo.png" alt="shiny logo" width="36" height="36"></a> <a href="https://github.com/topics/Visual_Studio_Code" title="VSCode"><img src="https://raw.githubusercontent.com/github/explore/bbd48b997e8d0bef63f676eca4da5e1f76487b56/topics/visual-studio-code/visual-studio-code.png" alt="VSCode logo" width="36" height="36"></a> <a href="https://github.com/topics/gitlab" title="GitLab"><img src="https://raw.githubusercontent.com/github/explore/3f5c1e7d83bce81b0872ac88d46532515bdc88ef/topics/gitlab/gitlab.png" alt="gitlab logo" width="36" height="36"></a> <a href="https://github.com/topics/docker" title="docker"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" alt="docker logo" width="36" height="36"></a> <a href="https://github.com/topics/odk" title="odk"><img src="https://repository-images.githubusercontent.com/355069/27043699-2a0a-4135-b3bd-bc8a92810980" alt="odk logo" width="50" height="36"></a> <a href="https://github.com/topics/bootstrap" title="Bootstrap"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/bootstrap/bootstrap.png" alt="Bootstrap" width="36" height="36"></a>
+</p>
 </div>
 </section>
-<section id="déroulé-du-projet" class="slide level2">
-<h2>Déroulé du projet</h2>
-<div class="{.incremental">
-<ul>
-<li><p>Projet d’unité BioSP 2019, porté par <a href="mailto:jean-francois-rey@inrae.fr">Jean-François Rey</a> <span class="math inline">\(\rightarrow\)</span> CATI IMOTEP</p></li>
-<li><p>V1 (2021) : Etude de faisabilité, état des lieux INRAE, création des groupes de travail</p></li>
-<li><p>V2 (2022) : Passage d’un projet CATI-IMOTEP <span class="math inline">\(\rightarrow\)</span> Inter-CATIs et ouverture de la version Bêta</p></li>
-<li><p>V2 (2023) : Passage de l’infra en version <code>kickflip</code>, refonte quarto documentation &amp; site web</p></li>
-</ul>
-</div>
-<div class="fragment fade-in-then-out">
-<p><img data-src="img/kickflip.gif" class="absolute" style="top: 200px; left: 230px; width: 400px; height: 400px; "></p>
-</div>
-<div class="fragment">
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Qui paye ? <span class="emoji" data-emoji="euro">💶</span></strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li>Financements SAPI &amp; DipSO 2022/2023 (Formation et hackatons)</li>
-<li>Financements futurs (+ pérennisation) en cours de recherche</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="le-projet-sk8-cest-qui" class="slide level2">
-<h2>Le projet SK8 : C’est qui ?</h2>
-<ul>
-<li><p><span class="math inline">\(\approx\)</span> 30 ITA (<span class="math inline">\(\approx\)</span> 15 actifs, noyau dur de 5 agents)</p></li>
-<li><p><span class="math inline">\(\neq\)</span> CATIs (10), Unités, Départements scientifiques et directions</p></li>
-<li><p>Statisticiens, Bioinformaticiens, DevOps, Administrateurs systèmes…</p></li>
-<li><p>2 groupes de travail, réunions mensuelles :</p>
-<ul>
-<li><p>Groupe <strong>Utilisateurs</strong> <i class="fa-solid fa-code" aria-label="code"></i></p></li>
-<li><p>Groupe <strong>DevOps</strong> <i class="fa-solid fa-server" aria-label="server"></i></p></li>
-</ul></li>
-</ul>
-</section>
-<section id="le-projet-sk8-cest-qui-1" class="slide level2">
-<h2>Le projet SK8 : C’est qui ?</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:45%;">
+<section id="et-vous-vous-codez-avec-quoi" class="slide level2">
+<h2>Et vous, vous codez avec quoi ?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/photo_sk8_team.jpeg" class="quarto-figure quarto-figure-center" style="width:75.0%"></p>
-</figure>
-</div>
-</div><div class="column" style="width:45%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/dessin_groupes.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="sk8-ca-marche-comment" class="title-slide slide level1 inverse center">
-<h1>SK8 : Ca marche comment ?</h1>
-
-</section>
-<section id="infrastructure-générale" class="slide level2">
-<h2>Infrastructure générale</h2>
-<p><br></p>
-<center>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/wflow_sk8.png"></p>
-<figcaption><em>Schéma simplifié du fonctionnement</em></figcaption>
-</figure>
-</div>
-<center>
-</center></center></section>
-<section id="du-point-de-vue-utilisateur" class="slide level2 smaller">
-<h2>Du point de vue utilisateur</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/wflow.png" class="quarto-figure quarto-figure-center" style="width:65.0%"></p>
+<p><img data-src="img/rstudio.png" class="quarto-figure quarto-figure-center" style="width:35.0%"></p>
 </figure>
 </div>
 <div>
 <ul>
-<li class="fragment">Demande d’hébergement : <span class="emoji" data-emoji="new">🆕</span> <a href="https://demande-hebergement.sk8.inrae.fr" class="uri">https://demande-hebergement.sk8.inrae.fr</a> <span class="emoji" data-emoji="new">🆕</span></li>
-<li class="fragment">Création automatique d’une issue sur le support <a href="https://forgemia.inra.fr/sk8/sk8-support/" class="uri">https://forgemia.inra.fr/sk8/sk8-support/</a></li>
-<li class="fragment">Création d’un projet (app) sous <a href="https://forgemia.inra.fr/sk8/sk8-apps/" class="uri">https://forgemia.inra.fr/sk8/sk8-apps/</a></li>
-<li class="fragment">L’utilisateur ajoute son code : <code>git clone | add | commit | push</code></li>
-<li class="fragment">Application disponible : <a href="https://sk8-demo.sk8.inrae.fr" class="uri">https://sk8-demo.sk8.inrae.fr</a></li>
+<li class="fragment">Environnement de développement intégré (IDE) Open-Source développé par <del>Rstudio</del> Posit <span class="emoji" data-emoji="copyright">©️</span></li>
+<li class="fragment">Indissociable de <i class="fa-brands fa-r-project" aria-label="r-project"></i></li>
+<li class="fragment">Posit mise sur vscode pour <i class="fa-brands fa-python" aria-label="python"></i> <i class="fa-solid fa-arrow-right" aria-label="arrow-right"></i> <em>Quid</em> de l’IDE Rstudio ?
+<center></center></li>
+<li class="fragment">Quarto <em>vs</em> Rmarkdown <code>==</code> vscode <em>vs</em> Rstudio ?
+</li>
 </ul>
-</div>
-</section>
-<section id="le-catalogue-sk8" class="slide level2">
-<h2>Le catalogue SK8</h2>
-<p><br></p>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>L’utilisation d’un catalogue (via ShinyProxy) permet</strong></p>
-</div>
-<div class="callout-content">
-<ul>
-<li><p>De disposer d’un hub centralisé qui référence toutes les applications</p></li>
-<li><p>De déployer une instance distincte pour chaque utilisateur d’une application</p></li>
-</ul>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:40%;">
-<center>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="img/catalogue.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
-</figure>
-</div>
-<p><a href="https://shiny.sk8.inrae.fr" class="uri">https://shiny.sk8.inrae.fr</a></p>
-</center>
-</div>
-</div>
-</section>
-<section id="focus-app-demande-dhébergement" class="slide level2">
-<h2>Focus app demande d’hébergement</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li><p>Développé avec <a href="https://shinysurveys.jdtrat.com/">{shinysurveys}</a></p></li>
-<li><p>Connexion OAuth via la ForgeMIA (API GitLab <i class="fa-brands fa-gitlab" aria-label="gitlab"></i>)</p></li>
-<li><p>Listes déroulantes personnalisées en fonction de l’utilisateur (<i class="fa-brands fa-gitlab" aria-label="gitlab"></i>)</p></li>
-<li><p>Possibilité d’upload un logo pour l’app : API pour l’intégrer dans une issue GitLab</p></li>
-<li><p>Création du corps markdown d’une issue remplie avec les infos saisies (<code>{glue}</code>)</p></li>
-<li><p>Envoi d’un mail à l’utilisateur (serveur SMTP : <code>dix-sk8</code>)</p></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<center>
-<img data-src="img/2023-03-23-14-41-47.png"> <img data-src="img/surveys.png" class="quarto-figure quarto-figure-center" style="width:30.0%">
-</center>
-</div>
 </div>
 </section></section>
 <section>
-<section id="sk8-un-projet-qui-roule-comme-sur-des-roulettes" class="title-slide slide level1 inverse center">
-<h1><span class="emoji" data-emoji="skateboard">🛹</span> SK8 : Un projet qui roule comme sur des roulettes ? <span class="emoji" data-emoji="skateboard">🛹</span></h1>
+<section id="vscode-cest-quoi" class="title-slide slide level1 inverse center">
+<h1>Vscode, c’est quoi ? <span class="emoji" data-emoji="thinking">🤔</span></h1>
 
 </section>
-<section id="bilan" class="slide level2">
-<h2>Bilan</h2>
+<section id="visual-studio-code" class="slide level2" data-background-image="img/vscode-logo-short.png" data-background-size="150px" data-background-position="top 40px right 80px">
+<h2>Visual Studio Code</h2>
+<div>
 <ul>
-<li><p><span class="emoji" data-emoji="white_check_mark">✅</span> Plateforme ouverte en version bêta <span class="emoji" data-emoji="white_check_mark">✅</span></p></li>
-<li><p><span class="emoji" data-emoji="warning">⚠️</span> <strong>Les use-case les plus complexes sont les bienvenus pour tester le service !</strong> <span class="emoji" data-emoji="warning">⚠️</span></p></li>
-<li><p>Travail innovant mêlant de nombreuses technologies (R, Docker, Gitlab, CI/CD…)</p></li>
-<li><p>Projet mêlant une grande diversité de profils au travers de 10 CATIs</p></li>
-<li><p>Améliorations à venir au fil des travaux des groupes Users &amp; Devops…</p></li>
-<li><p>… Mais principalement basé sur du volontariat !</p></li>
+<li class="fragment">IDEA Open-Source développé par Microsoft</li>
+<li class="fragment">Disponible sous <i class="fa-brands fa-apple" aria-label="apple"></i> <i class="fa-brands fa-windows" aria-label="windows"></i> et <i class="fa-brands fa-linux" aria-label="linux"></i></li>
+<li class="fragment">Entièrement modulable (<code>config.json</code>) et formidable bibliothèque d’extensions</li>
+<li class="fragment">Excellente intégration de <i class="fa-brands fa-git-alt" aria-label="git-alt"></i> et <i class="fa-brands fa-github" aria-label="github"></i></li>
+<li class="fragment">Prise en charge d’une 100aine de langages : C, C#, C++, CSS, HTML, Java, JavaScript, Markdown, PHP, Python…</li>
+<li class="fragment">… y compris <i class="fa-brands fa-r-project" aria-label="r-project"></i> !</li>
 </ul>
+</div>
 </section>
-<section id="et-la-suite" class="slide level2">
-<h2>Et la suite ?</h2>
+<section id="ca-ressemble-à-quoi" class="slide level2">
+<h2>Ca ressemble à quoi ?</h2>
+<div class="fragment">
+<p>A ce que l’on veut !!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/cap-color.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="lexplorateur-de-fichier" class="slide level2">
+<h2>L’explorateur de fichier</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div>
+<ul>
+<li class="fragment">Possibilité de glisser-déposer depuis l’explorateur de fichier</li>
+<li class="fragment">Renommage à la volée</li>
+<li class="fragment">thèmes d’icônes</li>
+<li class="fragment">copy/paste depuis le presse-papier (+ génération syntaxe markdown)</li>
+<li class="fragment">Rechercher/Remplacer dans un fichier / dans un répertoire (rapidité++ et regex)</li>
+</ul>
+</div>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/cap_explorateur.png"></p>
+</div>
+</div>
+</section>
+<section id="la-configuration" class="slide level2">
+<h2>La configuration</h2>
+<p><img data-src="img/settings.png"></p>
+</section>
+<section id="la-palette-de-commandes" class="slide level2">
+<h2>La palette de commandes</h2>
+<p>Un raccourcis pour TOUS les unir <i class="fa-solid fa-ring" aria-label="ring"></i> : CTRL + MAJ + P</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/palette.png" class="quarto-figure quarto-figure-center" style="width:70.0%"></p>
+</figure>
+</div>
+</section>
+<section id="snippets" class="slide level2">
+<h2>Snippets</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<ul>
-<li><p>Intégration des cas d’usage CATIs</p></li>
-<li><p>Traitement des retours utilisateurs</p></li>
-<li><p>Poster présenté aux rencontres R 2023 à Avignon classé <strong>1er</strong> <span class="emoji" data-emoji="trophy">🏆</span></p></li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/quarto-snippet.png"></p>
+<figcaption>Fichier .Qmd</figcaption>
+</figure>
+</div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="img/poster.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+<p><img data-src="img/r-snippet.png"></p>
+<figcaption>Fichier .R</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="et-la-suite-1" class="slide level2">
-<h2>Et la suite ?</h2>
-<div class="callout callout-warning no-icon callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Chantiers en cours <span class="emoji" data-emoji="building_construction">🏗️</span></strong></p>
-</div>
-<div class="callout-content">
+<section id="outils-développeurs" class="slide level2">
+<h2>Outils développeurs</h2>
 <ul>
-<li>Pérennisation de l’infrastructure (Analyses, Études et solutions possibles)</li>
-<li>Données persistantes (Solution : Stockage S3 externe)</li>
-<li>Monitoring et log</li>
-<li>Authentification</li>
-<li>Intégration de Rstudio Server</li>
+<li>Outils développeur : linter…</li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+<section id="interface-web" class="slide level2">
+<h2>Interface Web</h2>
+<ul>
+<li>Basé sur Electron</li>
+<li>git, ouvert dans github, gitlab ide web</li>
+</ul>
 </section>
 <section id="merci-des-questions" class="slide level2">
 <h2>Merci ! Des questions ?</h2>
@@ -881,19 +484,18 @@
 <div class="callout callout-note no-icon callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
-<p><strong>Les liens</strong></p>
+<p><strong>Me contacter</strong></p>
 </div>
 <div class="callout-content">
-<p><i class="fa-solid fa-globe" aria-label="globe"></i> <a href="https://sk8.inrae.fr" class="uri">https://sk8.inrae.fr</a></p>
-<p><i class="fa-solid fa-book" aria-label="book"></i> <a href="https://docs.sk8.inrae.fr" class="uri">https://docs.sk8.inrae.fr</a></p>
-<p><i class="fa-brands fa-gitlab" aria-label="gitlab"></i> <a href="https://forgemia.inra.fr/sk8" class="uri">https://forgemia.inra.fr/sk8</a></p>
-<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:sk8-contact@groupes.renater.fr">sk8-contact@groupes.renater.fr</a></p>
-<p><i class="fa-solid fa-comment-dots" aria-label="comment-dots"></i> <a href="https://forum.dipso.inrae.fr/t/r-shiny-service-hebergement-inrae/">forum DipSO</a></p>
+<p><i class="fa-solid fa-globe" aria-label="globe"></i> <a href="https://dcarayon.fr" class="uri">https://dcarayon.fr</a></p>
+<p><i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/davidcarayon" class="uri">https://github.com/davidcarayon</a></p>
+<p><i class="fa-brands fa-linkedin" aria-label="linkedin"></i> <a href="https://www.linkedin.com/in/carayon-david/" class="uri">https://www.linkedin.com/in/carayon-david/</a></p>
+<p><i class="fa-solid fa-envelope" aria-label="envelope"></i> <a href="mailto:david.carayon@inrae.fr">david.carayon@inrae.fr</a></p>
 </div>
 </div>
 </div>
 <p><br></p>
-<p><i class="fa-brands fa-slideshare" aria-label="slideshare"></i> Slides consultables ici : <br> <a href="https://davidcarayon.github.io/slides/talks/CITISES_SK8/" class="uri">https://davidcarayon.github.io/slides/talks/CITISES_SK8/</a></p>
+<p><i class="fa-brands fa-slideshare" aria-label="slideshare"></i> Slides consultables ici : <br> <a href="https://dcarayon.fr/slides/INSEE-VSCODE" class="uri">https://dcarayon.fr/slides/INSEE-VSCODE</a></p>
 </section>
 <section id="slides-made-with" class="slide level2 plain">
 <h2>Slides made with …</h2>
@@ -909,7 +511,7 @@
 <div class="quarto-auto-generated-content">
 <p><img src="../../site_libs/quarto-contrib/quarto-project/davidcarayon/inrae/ressources/assets/bloc-etat.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Webinaire CATI CITISES | 19/09/2023</p>
+<p>Communication INSEE</p>
 </div>
 </div>
 </section></section>
