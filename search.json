@@ -543,7 +543,7 @@
     "href": "talks/INSEE-VSCODE/index.html#la-configuration",
     "title": "VSCode pour faire du R : une (R)évolution ?",
     "section": "La configuration",
-    "text": "La configuration\n\n\n\n\n\n\n\nAstuce\n\n\nCes options sont synchronisables avec votre compte Gihub"
+    "text": "La configuration\n\nCes options sont synchronisables avec votre compte Gihub"
   },
   {
     "objectID": "talks/INSEE-VSCODE/index.html#la-palette-de-commandes",
@@ -560,11 +560,11 @@
     "text": "Snippets\n\n\n\n\n\nFichier .Qmd\n\n\n\n\n\n\nFichier .R"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug",
-    "href": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug",
+    "objectID": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug-formattage",
+    "href": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug-formattage",
     "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Outils développeurs : Linting, debug",
-    "text": "Outils développeurs : Linting, debug"
+    "section": "Outils développeurs : Linting, debug, formattage",
+    "text": "Outils développeurs : Linting, debug, formattage"
   },
   {
     "objectID": "talks/INSEE-VSCODE/index.html#git",
@@ -578,7 +578,168 @@
     "href": "talks/INSEE-VSCODE/index.html#github-gitlab",
     "title": "VSCode pour faire du R : une (R)évolution ?",
     "section": "GitHub  / GitLab ",
-    "text": "GitHub  / GitLab \n\nOuvrir dans github,\nBasé sur Electron -&gt; gitlab ide web\nExtension Gitlab Workflow"
+    "text": "GitHub  / GitLab"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#un-peu-de-configuration",
+    "href": "talks/INSEE-VSCODE/index.html#un-peu-de-configuration",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Un peu de configuration",
+    "text": "Un peu de configuration\n\nvscode n’est pas dédié à , contrairement à RStudio\nExcellent tutoriel en 3 parties de ThinkR ici, ici puis ici\n\n\n\ninstall.packages(\"languageserver\")\nInstaller l’extension vscode REditorSupport\nInstaller radian, une console R (basée sur python) plus conviviale que le terminal R de base\ninstall.packages(\"httpgd\") pour l’affichage de graphiques\nConfigurations diverses et ajout des raccourcis (pipe etc.)"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#autocomplétion-aide",
+    "href": "talks/INSEE-VSCODE/index.html#autocomplétion-aide",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Autocomplétion, aide",
+    "text": "Autocomplétion, aide\nUn peu différent de sous RStudio"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#workspace",
+    "href": "talks/INSEE-VSCODE/index.html#workspace",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Workspace ",
+    "text": "Workspace"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#mais-où-est-mon-projet",
+    "href": "talks/INSEE-VSCODE/index.html#mais-où-est-mon-projet",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Mais où est mon projet ? 😨",
+    "text": "Mais où est mon projet ? 😨\n\n\nPas de projets à la Rstudio (.RProj), Les workspaces vscode sont définis arbitrairement à l’échelle des répertoires (détection de dépôts git)"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#extension-vscode-quarto",
+    "href": "talks/INSEE-VSCODE/index.html#extension-vscode-quarto",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Extension vscode Quarto",
+    "text": "Extension vscode Quarto\n\nQuarto est né peu après le début de des développements vscode chez Posit  Optimisé"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#autocomplétion",
+    "href": "talks/INSEE-VSCODE/index.html#autocomplétion",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Autocomplétion",
+    "text": "Autocomplétion\nAutocomplétion du YAML et du contenu Quarto"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#intégration-de-templates-quarto",
+    "href": "talks/INSEE-VSCODE/index.html#intégration-de-templates-quarto",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Intégration de templates quarto",
+    "text": "Intégration de templates quarto\n\n\n\nhttps://github.com/davidcarayon/quarto-inrae-extension"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#les-extensions",
+    "href": "talks/INSEE-VSCODE/index.html#les-extensions",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Les extensions !",
+    "text": "Les extensions !"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#rainbow-csv",
+    "href": "talks/INSEE-VSCODE/index.html#rainbow-csv",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Rainbow CSV",
+    "text": "Rainbow CSV"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#excel-viewer",
+    "href": "talks/INSEE-VSCODE/index.html#excel-viewer",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Excel Viewer",
+    "text": "Excel Viewer"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#color-picker",
+    "href": "talks/INSEE-VSCODE/index.html#color-picker",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Color Picker",
+    "text": "Color Picker"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#codesnap",
+    "href": "talks/INSEE-VSCODE/index.html#codesnap",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "CodeSnap",
+    "text": "CodeSnap"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#ia-générative-copilot-llms",
+    "href": "talks/INSEE-VSCODE/index.html#ia-générative-copilot-llms",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "IA générative (Copilot, LLMs…)",
+    "text": "IA générative (Copilot, LLMs…)\nIntégration native Github Copilot (Microsoft) et intégrations de LLMs OpenSource (ex : LLama3)"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#database-manager",
+    "href": "talks/INSEE-VSCODE/index.html#database-manager",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Database Manager",
+    "text": "Database Manager"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#github-actions",
+    "href": "talks/INSEE-VSCODE/index.html#github-actions",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Github Actions",
+    "text": "Github Actions"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#gitlab-workflow",
+    "href": "talks/INSEE-VSCODE/index.html#gitlab-workflow",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Gitlab Workflow",
+    "text": "Gitlab Workflow"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#ssh-remote",
+    "href": "talks/INSEE-VSCODE/index.html#ssh-remote",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "SSH Remote",
+    "text": "SSH Remote"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#python-shiny",
+    "href": "talks/INSEE-VSCODE/index.html#python-shiny",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Python  & Shiny",
+    "text": "Python  & Shiny"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#latex",
+    "href": "talks/INSEE-VSCODE/index.html#latex",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "LaTeX",
+    "text": "LaTeX"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#foam",
+    "href": "talks/INSEE-VSCODE/index.html#foam",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "FOAM",
+    "text": "FOAM\nUn Obsidian dans vscode !"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#et-bien-dautres",
+    "href": "talks/INSEE-VSCODE/index.html#et-bien-dautres",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Et bien d’autres !!",
+    "text": "Et bien d’autres !!\n\n\n\nhttps://marketplace.visualstudio.com"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#les-quelques-inconvénients",
+    "href": "talks/INSEE-VSCODE/index.html#les-quelques-inconvénients",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "Les (quelques) inconvénients",
+    "text": "Les (quelques) inconvénients\n\n\nPas de templates de projet R en GUI (ex : R package with devtools)\nAutocompletion différente\nBeaucoup de bidouille (gestion de python, configs, raccourcis, conflits d’extensions)\nRenv : Quelques subtilités (vscode a besoin de 2 packages pour fonctionner)\nTROP de possibilités de customisation\nOutils spécifiquement développés pour rstudio non accessibles (type addin)"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#a-retenir",
+    "href": "talks/INSEE-VSCODE/index.html#a-retenir",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "A retenir",
+    "text": "A retenir\n\n\nFormidable outil qui ouvre vers une communauté bien plus large que \nNécessite un peu plus de compétences en bidouille informatiques\nPrend tout son sens lorsque le travail devient polyglotte (   )\n\nSi vous restez sous  uniquement, RStudio reste un IDE 100% dédié et tout à fait adapté\n\nFonctionnement hybride : RStudio pour du  en local, vscode pour de la connexion SSH ou pour d’autres langages"
   },
   {
     "objectID": "talks/INSEE-VSCODE/index.html#merci-des-questions",
@@ -592,6 +753,6 @@
     "href": "talks/INSEE-VSCODE/index.html#slides-made-with",
     "title": "VSCode pour faire du R : une (R)évolution ?",
     "section": "Slides made with …",
-    "text": "Slides made with …\n\n\n\n\n\n\n https://github.com/davidcarayon/InraeThemes\n\n\n\n\n\nCommunication INSEE"
+    "text": "Slides made with …\n\n\n\n\n\n\n https://github.com/davidcarayon/quarto-inrae-extension"
   }
 ]
