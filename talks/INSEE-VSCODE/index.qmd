@@ -12,7 +12,7 @@ author:
 format: 
   inrae-revealjs:
     footer: "Communication INSEE"
-    theme: [custom.scss]
+    theme: [custom_vscode.scss]
     transition: none
     code-overflow: wrap
     title-slide-attributes:
@@ -56,6 +56,8 @@ from: markdown+emoji
 
 ## Et vous, vous codez avec quoi ?
 
+. . .
+
 ![](img/rstudio.png){fig-align="center" width="35%"}
 
 ::: {.incremental}
@@ -72,9 +74,9 @@ from: markdown+emoji
 ## Visual Studio Code {background-image="img/vscode-logo-short.png" background-size="150px" background-position="top 40px right 80px"}
 
 ::: {.incremental}
-- IDEA Open-Source développé par Microsoft
-- Disponible sous {{< fa brands apple >}} {{< fa brands windows >}} et {{< fa brands linux >}}
-- Entièrement modulable (`config.json`) et formidable bibliothèque d'extensions
+- IDE Open-Source développé par Microsoft
+- Disponible sous {{< fa brands apple >}} {{< fa brands windows >}} et {{< fa brands linux >}} (electron.js)
+- Entièrement modulable (`.json`) et formidable bibliothèque d'extensions (>40k)
 - Excellente intégration de {{< fa brands git-alt >}} et {{< fa brands github >}}
 - Prise en charge d'une 100aine de langages :  C, C#, C++, CSS, HTML, Java, JavaScript, Markdown, PHP, Python... 
 - ... y compris {{< fa brands r-project >}} !
@@ -87,8 +89,13 @@ from: markdown+emoji
 
 A ce que l'on veut !!
 
-![](img/cap-color.png){fig-align="center" width="80%"}
+::: {.r-stack}
 
+![](img/cap-color.png){.fragment fig-align="center" width="80%"}
+
+![](img/overview.png){.fragment fig-align="center" width="80%"}
+
+:::
 ## L'explorateur de fichier
 
 :::: {.columns}
@@ -114,6 +121,10 @@ A ce que l'on veut !!
 
 ![](img/settings.png)
 
+::: {.callout-tip}
+Ces options sont synchronisables avec votre compte Gihub
+:::
+
 ## La palette de commandes
 
 Un raccourcis pour TOUS les unir {{< fa ring >}} : CTRL + MAJ + P 
@@ -134,14 +145,27 @@ Un raccourcis pour TOUS les unir {{< fa ring >}} : CTRL + MAJ + P
 
 ::::
 
-## Outils développeurs
+## Outils développeurs : Linting, debug
 
-- Outils développeur : linter…
+![](img/linting.gif)
 
-## Interface Web
+## Git {{< fa brands git-alt >}}
 
-- Basé sur Electron
-- git, ouvert dans github, gitlab ide web
+::: {.r-stack}
+
+![](img/git1.png){.fragment fig-align="center" width="80%"}
+
+![](img/merge-editor-overview.png){.fragment fig-align="center" width="80%"}
+
+:::
+
+## GitHub {{< fa brands github >}} / GitLab {{< fa brands gitlab >}}
+
+- Ouvrir dans github,
+- Basé sur Electron -> gitlab ide web
+- Extension Gitlab Workflow
+
+# Vous en avez eu assez ?
 
 ## Merci ! Des questions ?
 
