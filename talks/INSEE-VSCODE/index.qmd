@@ -254,28 +254,28 @@ Intégration native Github Copilot (Microsoft) et intégrations de LLMs OpenSour
 
 ![](img/gitlab-ci.png)
 
-## SSH Remote
+## SSH Remote {background-image="img/ssh-logo.png" background-size="100px" background-position="top 40px right 80px"}
 
-copie server webidea
+![](img/cap-ssh.png)
 
-## Python
+## Python {{< fa brands python >}} & Shiny {background-image="img/shiny-logo.png" background-size="100px" background-position="top 40px right 80px"}
 
-copie script Nico ?
+![](img/vscode-shiny.png){fig-align="center" width="60%"}
 
-## LaTeX
+## LaTeX {background-image="img/latex-logo.png" background-size="100px" background-position="top 40px right 80px"}
 
-Copie Poster IDEATools
-
-## Shiny
-
-Shiny for python screenshots
+![](img/tex-cap.png)
 
 ## FOAM {background-image="img/foam-logo.png" background-size="100px" background-position="top 40px right 80px"}
 
+  
 Un [Obsidian](https://obsidian.md) dans vscode !
 
 ![](img/foam-cap.png){fig-align="center" width="85%"}
 
+## Et bien d'autres !!
+
+![https://marketplace.visualstudio.com](img/marketplace.png){fig-align="center" width="80%"}
 
 # Conclusion {.inverse}
 
