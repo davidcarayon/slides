@@ -515,14 +515,14 @@
     "href": "talks/INSEE-VSCODE/index.html#et-vous-vous-codez-avec-quoi",
     "title": "VSCode pour faire du R : une (R)évolution ?",
     "section": "Et vous, vous codez avec quoi ?",
-    "text": "Et vous, vous codez avec quoi ?\n\n\n\n\n\n\n\nEnvironnement de développement intégré (IDE) Open-Source développé par Rstudio Posit ©️\nIndissociable de \nPosit mise sur vscode pour   Quid de l’IDE Rstudio ?\n\nQuarto vs Rmarkdown == vscode vs Rstudio ?"
+    "text": "Et vous, vous codez avec quoi ?\n\n\n\n\n\n\n\n\nEnvironnement de développement intégré (IDE) Open-Source développé par Rstudio Posit ©️\nIndissociable de \nPosit mise sur vscode pour   Quid de l’IDE Rstudio ?\n\nQuarto vs Rmarkdown == vscode vs Rstudio ?"
   },
   {
     "objectID": "talks/INSEE-VSCODE/index.html#visual-studio-code",
     "href": "talks/INSEE-VSCODE/index.html#visual-studio-code",
     "title": "VSCode pour faire du R : une (R)évolution ?",
     "section": "Visual Studio Code",
-    "text": "Visual Studio Code\n\n\nIDEA Open-Source développé par Microsoft\nDisponible sous   et \nEntièrement modulable (config.json) et formidable bibliothèque d’extensions\nExcellente intégration de  et \nPrise en charge d’une 100aine de langages : C, C#, C++, CSS, HTML, Java, JavaScript, Markdown, PHP, Python…\n… y compris  !"
+    "text": "Visual Studio Code\n\n\nIDE Open-Source développé par Microsoft\nDisponible sous   et  (electron.js)\nEntièrement modulable (.json) et formidable bibliothèque d’extensions (&gt;40k)\nExcellente intégration de  et \nPrise en charge d’une 100aine de langages : C, C#, C++, CSS, HTML, Java, JavaScript, Markdown, PHP, Python…\n… y compris  !"
   },
   {
     "objectID": "talks/INSEE-VSCODE/index.html#ca-ressemble-à-quoi",
@@ -543,7 +543,7 @@
     "href": "talks/INSEE-VSCODE/index.html#la-configuration",
     "title": "VSCode pour faire du R : une (R)évolution ?",
     "section": "La configuration",
-    "text": "La configuration"
+    "text": "La configuration\n\n\n\n\n\n\n\nAstuce\n\n\nCes options sont synchronisables avec votre compte Gihub"
   },
   {
     "objectID": "talks/INSEE-VSCODE/index.html#la-palette-de-commandes",
@@ -560,18 +560,25 @@
     "text": "Snippets\n\n\n\n\n\nFichier .Qmd\n\n\n\n\n\n\nFichier .R"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#outils-développeurs",
-    "href": "talks/INSEE-VSCODE/index.html#outils-développeurs",
+    "objectID": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug",
+    "href": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug",
     "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Outils développeurs",
-    "text": "Outils développeurs\n\nOutils développeur : linter…"
+    "section": "Outils développeurs : Linting, debug",
+    "text": "Outils développeurs : Linting, debug"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#interface-web",
-    "href": "talks/INSEE-VSCODE/index.html#interface-web",
+    "objectID": "talks/INSEE-VSCODE/index.html#git",
+    "href": "talks/INSEE-VSCODE/index.html#git",
     "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Interface Web",
-    "text": "Interface Web\n\nBasé sur Electron\ngit, ouvert dans github, gitlab ide web"
+    "section": "Git ",
+    "text": "Git"
+  },
+  {
+    "objectID": "talks/INSEE-VSCODE/index.html#github-gitlab",
+    "href": "talks/INSEE-VSCODE/index.html#github-gitlab",
+    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "section": "GitHub  / GitLab ",
+    "text": "GitHub  / GitLab \n\nOuvrir dans github,\nBasé sur Electron -&gt; gitlab ide web\nExtension Gitlab Workflow"
   },
   {
     "objectID": "talks/INSEE-VSCODE/index.html#merci-des-questions",
