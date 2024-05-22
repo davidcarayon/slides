@@ -1,0 +1,174 @@
+---
+title: "VSCode pour faire du R : une (**R**)évolution ?"
+subtitle: "Présentation de l'IDE et retour d'expérience"
+date: "2024-06-03"
+date-format: full
+lang: fr  
+author:
+  - name: "**David CARAYON**"
+    orcid: 0000-0003-0217-2175
+    email: Statisticien/Data Scientist @ UR ETTIS <br> david.carayon@inrae.fr
+    url: https://dcarayon.fr
+format: 
+  inrae-revealjs:
+    footer: "Communication INSEE"
+    theme: [custom.scss]
+    transition: none
+    code-overflow: wrap
+    title-slide-attributes:
+      data-footer: "<a rel='license' href='https://www.etalab.gouv.fr/licence-ouverte-open-licence/'><img alt='Creative Commons License' style='border-width:0; width:200px' src='https://www.etalab.gouv.fr/wp-content/uploads/2011/10/licence-ouverte-open-licence.gif' /><br></a>Présentation diffusée sous <a rel='license' href='https://www.etalab.gouv.fr/licence-ouverte-open-licence/'>Licence ouverte</a>."
+revealjs-plugins:
+  - pointer
+from: markdown+emoji
+---
+
+# Introduction {.inverse}
+
+## Bonjour :wave: 
+
+::: incremental
+
+- Statisticien @ INRAE | UR "ETTIS"
+- Ecologue de formation ayant mal tourné
+- R nerd depuis ~10ans : Packages R, Applis Shiny, extensions Quarto
+- Propageur de bonnes pratiques (renv, targets, tidyverse/models)
+- Apprenti devops (gitlab cicd, docker, k8s) -> Projet [SK8](https://sk8.inrae.fr)
+
+:::
+
+. . .
+
+<p align="center">
+  <a href="https://github.com/topics/r" title="R"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/r/r.png" alt="R logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/python" title="Python"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" alt="python logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/postgresql" title="PostgreSQL"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/postgresql/postgresql.png" alt="postgresql logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/quarto" title="Git"><img src="https://raw.githubusercontent.com/github/explore/80f119e965a9a3df7b74c3f7b63a502e3d0ded36/topics/quarto/quarto.png" alt="quarto logo" width="36" height="36" /></a>
+   <a href="https://github.com/topics/tidyverse" title="Git"><img src="https://avatars.githubusercontent.com/u/22032646?s=200&v=4" alt="tidyverse logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/tidymodels" title="Git"><img src="https://github.com/tidymodels/tidymodels/raw/main/man/figures/logo.png" alt="tidymodels logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/shiny" title="Git"><img src="https://github.com/rstudio/shiny/raw/main/man/figures/logo.png" alt="shiny logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/Visual_Studio_Code" title="VSCode"><img src="https://raw.githubusercontent.com/github/explore/bbd48b997e8d0bef63f676eca4da5e1f76487b56/topics/visual-studio-code/visual-studio-code.png" alt="VSCode logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/gitlab" title="GitLab"><img src="https://raw.githubusercontent.com/github/explore/3f5c1e7d83bce81b0872ac88d46532515bdc88ef/topics/gitlab/gitlab.png" alt="gitlab logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/docker" title="docker"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/docker/docker.png" alt="docker logo" width="36" height="36" /></a>
+  <a href="https://github.com/topics/odk" title="odk"><img src="https://repository-images.githubusercontent.com/355069/27043699-2a0a-4135-b3bd-bc8a92810980" alt="odk logo" width="50" height="36" /></a>
+  <a href="https://github.com/topics/bootstrap" title="Bootstrap"><img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/bootstrap/bootstrap.png" alt="Bootstrap" width="36" height="36" /></a>
+</p>
+
+
+## Et vous, vous codez avec quoi ?
+
+![](img/rstudio.png){fig-align="center" width="35%"}
+
+::: {.incremental}
+- Environnement de développement intégré (IDE) Open-Source développé par ~~Rstudio~~ Posit :copyright:
+- Indissociable de {{< fa brands r-project >}}
+- Posit mise sur vscode pour {{< fa brands python >}} {{< fa arrow-right >}} _Quid_ de l'IDE Rstudio ?
+<center>
+- Quarto _vs_ Rmarkdown `==` vscode _vs_ Rstudio ?
+</center>
+:::
+
+# Vscode, c'est quoi ? :thinking: {.inverse}
+
+## Visual Studio Code {background-image="img/vscode-logo-short.png" background-size="150px" background-position="top 40px right 80px"}
+
+::: {.incremental}
+- IDEA Open-Source développé par Microsoft
+- Disponible sous {{< fa brands apple >}} {{< fa brands windows >}} et {{< fa brands linux >}}
+- Entièrement modulable (`config.json`) et formidable bibliothèque d'extensions
+- Excellente intégration de {{< fa brands git-alt >}} et {{< fa brands github >}}
+- Prise en charge d'une 100aine de langages :  C, C#, C++, CSS, HTML, Java, JavaScript, Markdown, PHP, Python... 
+- ... y compris {{< fa brands r-project >}} !
+
+:::
+
+## Ca ressemble à quoi ?
+
+. . .
+
+A ce que l'on veut !!
+
+![](img/cap-color.png){fig-align="center" width="80%"}
+
+## L'explorateur de fichier
+
+:::: {.columns}
+
+::: {.column width="60%"}
+::: {.incremental}
+- Possibilité de glisser-déposer depuis l'explorateur de fichier
+- Renommage à la volée
+- thèmes d'icônes
+- copy/paste depuis le presse-papier (+ génération syntaxe markdown)
+- Rechercher/Remplacer dans un fichier / dans un répertoire (rapidité++ et regex)
+
+:::
+:::
+
+::: {.column width="40%"}
+![](img/cap_explorateur.png)
+:::
+
+::::
+
+## La configuration 
+
+![](img/settings.png)
+
+## La palette de commandes
+
+Un raccourcis pour TOUS les unir {{< fa ring >}} : CTRL + MAJ + P 
+
+![](img/palette.png){fig-align="center" width="70%"}
+
+## Snippets
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![Fichier .Qmd](img/quarto-snippet.png)
+:::
+
+::: {.column width="50%"}
+![Fichier .R](img/r-snippet.png)
+:::
+
+::::
+
+## Outils développeurs
+
+- Outils développeur : linter…
+
+## Interface Web
+
+- Basé sur Electron
+- git, ouvert dans github, gitlab ide web
+
+## Merci ! Des questions ?
+
+<br />
+
+::: {.callout-note appearance="minimal"}
+## Me contacter
+
+{{< fa globe >}} <https://dcarayon.fr> 
+
+{{< fa brands github >}} <https://github.com/davidcarayon> 
+
+{{< fa brands linkedin >}} <https://www.linkedin.com/in/carayon-david/>
+
+{{< fa envelope >}} [david.carayon\@inrae.fr](mailto:david.carayon@inrae.fr)
+:::
+
+<br />
+
+{{< fa brands slideshare >}} Slides consultables ici : <br> <https://dcarayon.fr/slides/INSEE-VSCODE>
+
+## Slides made with ... {.plain}
+
+<center>
+
+![](img/inraethemes.png){width="400px" fig-align="center"}
+
+{{< fa brands github >}} <https://github.com/davidcarayon/InraeThemes>
+
+</center>
