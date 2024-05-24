@@ -161,195 +161,6 @@
     "text": "References\n\n\n\n\nD. Carayon et al. 2023 | Predicting drownings using machine learning\n\n\n\n\nCastelle, Bruno, Tim Scott, Rob Brander, Jak McCarroll, Arthur Robinet, Eric Tellier, Elias de Korte, Bruno Simonnet, and Louis-Rachid Salmi. 2019. “Environmental Controls on Surf Zone Injuries on High-Energy Beaches.” Natural Hazards and Earth System Sciences 19 (10): 21832205.\n\n\nChawla, N. V., K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer. 2002. “SMOTE: Synthetic Minority over-Sampling Technique.” Journal of Artificial Intelligence Research 16 (June): 321–57. https://doi.org/10.1613/jair.953.\n\n\nDehez, Jeoffrey, and Sandrine Lyser. 2021. “Fréquentation des plages océanes et risques de baignade en Aquitaine en 2020. Une étude exploratoire.” Research Report. INRAE. https://hal.science/hal-03549020.\n\n\nSacks, Jerome, William J. Welch, Toby J. Mitchell, and Henry P. Wynn. 1989. “Design and Analysis of Computer Experiments.” Statistical Science 4 (4). https://doi.org/10.1214/ss/1177012413.\n\n\nTellier, Éric, Bruno Simonnet, Cédric Gil-Jardiné, Marion Lerouge-Bailhache, Bruno Castelle, and Rachid Salmi. 2021. “Predicting Drowning from Sea and Weather Forecasts: Development and Validation of a Model on Surf Beaches of Southwestern France.” Injury Prevention 28 (1): 16–22. https://doi.org/10.1136/injuryprev-2020-044092."
   },
   {
-    "objectID": "talks/EABX_SK8/index.html#shiny-cest-quoi",
-    "href": "talks/EABX_SK8/index.html#shiny-cest-quoi",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Shiny, c’est quoi ? 🤔",
-    "text": "Shiny, c’est quoi ? 🤔\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShiny est un package R qui permet de développer facilement des applications web interactives dans une syntaxe R très simple (pouvant être complétée par du HTML / CSS / JS pour les applications les plus abouties).\nOutil principalement utilisé pour l’analyse et la visualisation de données (mais pas que)"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#un-exemple",
-    "href": "talks/EABX_SK8/index.html#un-exemple",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Un exemple",
-    "text": "Un exemple\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD ::: columns ::: {.column width=“50%”}  :::\n\n\n\n\n\n\n\n\nExemple EABX"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#quelques-notions-nécessaires",
-    "href": "talks/EABX_SK8/index.html#quelques-notions-nécessaires",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Quelques notions nécessaires",
-    "text": "Quelques notions nécessaires\nContinuous Integration / Continuous Development (CI/CD)\n\n\n\n\n\n\n\n\nSuite d’instructions automatiques lors de mise à jour de code\nPermet d’appliquer des tests automatiques (sécurité) ou encore d’effectuer des actions (publication de données, pages web, etc.)\nPiloté par exemple par un fichier .gitlab-ci.yml\n\n\n\n\ngitlab-ci.yml\n\n01-Publier:\n  stage: Gérer mon application\n  needs: [\"Construire-l-application\"]\n  image: curlimages/curl:latest\n  rules:\n    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == \"true\"'\n      when: on_success\n      allow_failure: false\n    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == \"false\"'\n      when: manual\n      allow_failure: true\n  before_script:\n    - ACTION=$SK8_DEPLOY\n  script:\n    - *commande-job"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-1",
-    "href": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-1",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Quelques notions nécessaires",
-    "text": "Quelques notions nécessaires\nDocker\n\n\n\n\nPermet de Containeuriser des logiciels, applications\nCréation d’une image Docker à partir d’une recette : le Dockerfile\nFacilite la diffusion (gestion des dépendances systèmes, etc.)\n\n\n\n\nDockerfile\n\nFROM rocker/verse:4.2.1\nRUN apt-get update && apt-get install -y  cmake imagemagick libcurl4-openssl-dev [...]\nRUN mkdir -p /usr/local/lib/R/etc/ /usr/lib/R/etc/\nRUN echo \"options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)\"\nRUN R -e 'install.packages(\"remotes\")'\nRUN Rscript -e 'remotes::install_version(\"magrittr\",upgrade=\"never\", version = \"2.0.3\")'\nRUN Rscript -e 'remotes::install_version(\"htmltools\",upgrade=\"never\", version = \"0.5.5\")'\n[...]\nRUN Rscript -e 'remotes::install_github(\"rstudio/sass@2f1f152d84c162ccb9aba1c056e3548079d669d9\")'\nRUN mkdir /build_zone\nADD . /build_zone\nWORKDIR /build_zone\nRUN R -e 'remotes::install_local(upgrade=\"never\")'\nRUN rm -rf /build_zone\nEXPOSE 3838\nCMD R -e \"options('shiny.port'=3838,shiny.host='0.0.0.0');ShinyIDEA::run_app()\""
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-2",
-    "href": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-2",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Quelques notions nécessaires",
-    "text": "Quelques notions nécessaires\nKubernetes\n Solution permettant de distribuer intelligemment des container Docker aux utilisateurs."
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#plusieurs-constats",
-    "href": "talks/EABX_SK8/index.html#plusieurs-constats",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Plusieurs constats…",
-    "text": "Plusieurs constats…\n\n\n\n Les applications R Shiny sont de plus en plus présentes dans notre environnement\n Peuvent être développées par des néophytes comme par des développeurs chevronnés\n Formidable outil de partage / valorisation et démocratisation des travaux menés dans l’institut\n Problématique majeure et récurrente autour de l’hébergement 😩"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#solutions-existantes-dhébergement",
-    "href": "talks/EABX_SK8/index.html#solutions-existantes-dhébergement",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Solutions existantes d’hébergement",
-    "text": "Solutions existantes d’hébergement\n\n\n\n\n\n\n\nSolutions d’hébergement propriétaires\n\n\n\n \n\n\n\n\n\n\n\nRapprochement Shiny/Docker"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#solutions-existantes-à-inrae",
-    "href": "talks/EABX_SK8/index.html#solutions-existantes-à-inrae",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Solutions existantes à INRAE",
-    "text": "Solutions existantes à INRAE\n\nMultiples solutions ShinyServer OpenSource locales\nTrès limitées et problématiques en termes d’administration ⚠️\n\n\n\n\n\n\n\nUne solution intéressante à l’échelle d’une unité (BioSP)\n\n\n\nShinyProxy (Docker) https://shiny.biosp.inrae.fr\nGestion du code via GitLab CI/CD\nApplications conteneurisées\nAbstraction et meilleure gestion de la partie système"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8",
-    "href": "talks/EABX_SK8/index.html#le-projet-sk8",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Le projet SK8",
-    "text": "Le projet SK8\n\n\n\n\nR-Shiny Kubernetes Service \\(\\rightarrow\\) SK8SS \\(\\rightarrow\\) SK8 🛹"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8-pourquoi",
-    "href": "talks/EABX_SK8/index.html#le-projet-sk8-pourquoi",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Le projet SK8 : Pourquoi ?",
-    "text": "Le projet SK8 : Pourquoi ?\n\n\n\nBesoins en augmentation d’hébergement d’apps Shiny\n\n\n\nFacile d’accès, pérenne et évolutif\nScalable (élastique)\nSécurisé \n\n\n\n\n\n\n\n\nFinalité\n\n\n\nAvoir une meilleure visibilité et harmonisation des travaux de l’institut \n\n\n\n\n\n\n\n\n\nContrainte forte\n\n\n\nDoit rester dans l’institut\nDoit répondre aux besoins des agents"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#déroulé-du-projet",
-    "href": "talks/EABX_SK8/index.html#déroulé-du-projet",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Déroulé du projet",
-    "text": "Déroulé du projet\n\n\nProjet d’unité BioSP 2019, porté par Jean-François Rey \\(\\rightarrow\\) CATI IMOTEP\nV1 (2021) : Etude de faisabilité, état des lieux INRAE, création des groupes de travail\nV2 (2022) : Passage d’un projet CATI-IMOTEP \\(\\rightarrow\\) Inter-CATIs et ouverture de la version Bêta\nV2 (2023) : Passage de l’infra en version kickflip, refonte quarto documentation & site web\n\n\n\n\n\n\n\n\n\n\n\n\nQui paye ? 💶\n\n\n\nFinancements SAPI & DipSO 2022/2023 (Formation et hackatons)\nFinancements futurs (+ pérennisation) en cours de recherche"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui",
-    "href": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Le projet SK8 : C’est qui ?",
-    "text": "Le projet SK8 : C’est qui ?\n\n\\(\\approx\\) 30 ITA (\\(\\approx\\) 15 actifs, noyau dur de 5 agents)\n\\(\\neq\\) CATIs (10), Unités, Départements scientifiques et directions\nStatisticiens, Bioinformaticiens, DevOps, Administrateurs systèmes…\n2 groupes de travail, réunions mensuelles :\n\nGroupe Utilisateurs \nGroupe DevOps"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui-1",
-    "href": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui-1",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Le projet SK8 : C’est qui ?",
-    "text": "Le projet SK8 : C’est qui ?"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#infrastructure-générale",
-    "href": "talks/EABX_SK8/index.html#infrastructure-générale",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Infrastructure générale",
-    "text": "Infrastructure générale\n\n\n\n\n\nSchéma simplifié du fonctionnement"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#du-point-de-vue-utilisateur",
-    "href": "talks/EABX_SK8/index.html#du-point-de-vue-utilisateur",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Du point de vue utilisateur",
-    "text": "Du point de vue utilisateur\n\n\n\n\n\n\n\nDemande d’hébergement : 🆕 https://demande-hebergement.sk8.inrae.fr 🆕\nCréation automatique d’une issue sur le support https://forgemia.inra.fr/sk8/sk8-support/\nCréation d’un projet (app) sous https://forgemia.inra.fr/sk8/sk8-apps/\nL’utilisateur ajoute son code : git clone | add | commit | push\nApplication disponible : https://sk8-demo.sk8.inrae.fr"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#le-catalogue-sk8",
-    "href": "talks/EABX_SK8/index.html#le-catalogue-sk8",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Le catalogue SK8",
-    "text": "Le catalogue SK8\n\n\n\n\n\n\n\n\n\nL’utilisation d’un catalogue (via ShinyProxy) permet\n\n\n\nDe disposer d’un hub centralisé qui référence toutes les applications\nDe déployer une instance distincte pour chaque utilisateur d’une application\n\n\n\n\n\n\n\n\n\n\n\nhttps://shiny.sk8.inrae.fr"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#focus-app-demande-dhébergement",
-    "href": "talks/EABX_SK8/index.html#focus-app-demande-dhébergement",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Focus app demande d’hébergement",
-    "text": "Focus app demande d’hébergement\n\n\n\nDéveloppé avec {shinysurveys}\nConnexion OAuth via la ForgeMIA (API GitLab )\nListes déroulantes personnalisées en fonction de l’utilisateur ()\nPossibilité d’upload un logo pour l’app : API pour l’intégrer dans une issue GitLab\nCréation du corps markdown d’une issue remplie avec les infos saisies ({glue})\nEnvoi d’un mail à l’utilisateur (serveur SMTP : dix-sk8)"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#bilan",
-    "href": "talks/EABX_SK8/index.html#bilan",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Bilan",
-    "text": "Bilan\n\n✅ Plateforme ouverte en version bêta ✅\n⚠️ Les use-case les plus complexes sont les bienvenus pour tester le service ! ⚠️\nTravail innovant mêlant de nombreuses technologies (R, Docker, Gitlab, CI/CD…)\nProjet mêlant une grande diversité de profils au travers de 10 CATIs\nAméliorations à venir au fil des travaux des groupes Users & Devops…\n… Mais principalement basé sur du volontariat !"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#et-la-suite",
-    "href": "talks/EABX_SK8/index.html#et-la-suite",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Et la suite ?",
-    "text": "Et la suite ?\n\n\n\nIntégration des cas d’usage CATIs\nTraitement des retours utilisateurs\nPoster présenté aux rencontres R 2023 à Avignon"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#et-la-suite-1",
-    "href": "talks/EABX_SK8/index.html#et-la-suite-1",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Et la suite ?",
-    "text": "Et la suite ?\n\n\n\nChantiers en cours 🏗️\n\n\n\nPérennisation de l’infrastructure (Analyses, Études et solutions possibles)\nDonnées persistantes (Solution : Stockage S3 externe)\nMonitoring et log\nAuthentification\nIntégration de Rstudio Server"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#merci-des-questions",
-    "href": "talks/EABX_SK8/index.html#merci-des-questions",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Merci ! Des questions ?",
-    "text": "Merci ! Des questions ?\n\n\n\n\nLes liens\n\n\n https://sk8.inrae.fr (Rmarkdown, obsolète)\n https://sk8.pages.mia.inra.fr/projet_sk8/ (Quarto 🏗️)\n https://docs.sk8.inrae.fr\n https://forgemia.inra.fr/sk8\n sk8-contact@groupes.renater.fr\n forum DipSO\n\n\n\n\n Slides consultables ici :  https://david.carayon.pages.mia.inra.fr/slides/talks/2023-05-26_SK8_EABX/presentation_SK8_EABX"
-  },
-  {
-    "objectID": "talks/EABX_SK8/index.html#slides-made-with",
-    "href": "talks/EABX_SK8/index.html#slides-made-with",
-    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
-    "section": "Slides made with …",
-    "text": "Slides made with …\n\n\n\n\n\n\n https://github.com/davidcarayon/InraeThemes\n\n\n\n\n\nCafé données EABX | 26/05/2023"
-  },
-  {
-    "objectID": "talks/2023-test/test-idea.html#quarto",
-    "href": "talks/2023-test/test-idea.html#quarto",
-    "title": "La méthode IDEA4",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
-  },
-  {
-    "objectID": "talks/2023-test/test-idea.html#bullets",
-    "href": "talks/2023-test/test-idea.html#bullets",
-    "title": "La méthode IDEA4",
-    "section": "Bullets",
-    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
-  },
-  {
-    "objectID": "talks/2023-test/test-idea.html#code",
-    "href": "talks/2023-test/test-idea.html#code",
-    "title": "La méthode IDEA4",
-    "section": "Code",
-    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
-  },
-  {
-    "objectID": "talks/2023-test/test-idea.html#about-machine-learning",
-    "href": "talks/2023-test/test-idea.html#about-machine-learning",
-    "title": "La méthode IDEA4",
-    "section": "About machine learning",
-    "text": "About machine learning"
-  },
-  {
-    "objectID": "talks/2023-test/test-idea.html#thank-you",
-    "href": "talks/2023-test/test-idea.html#thank-you",
-    "title": "La méthode IDEA4",
-    "section": "Thank you!",
-    "text": "Thank you!\n\nFind me online:\n david.carayon@inrae.fr\n https://david.carayon.pages.mia.inra.fr/site/\n @davidcarayon\n forgemia.inra.fr/david.carayon\n @david_carayon\n\n Slides available here\n\n\n\nPrésentation de la méthode IDEA4 | Séminaire"
-  },
-  {
     "objectID": "talks/CITISES_SK8/index.html#shiny-cest-quoi",
     "href": "talks/CITISES_SK8/index.html#shiny-cest-quoi",
     "title": "SK8 - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
@@ -504,255 +315,192 @@
     "text": "Slides made with …\n\n\n\n\n\n\n https://github.com/davidcarayon/InraeThemes\n\n\n\n\n\nWebinaire CATI CITISES | 19/09/2023"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#bonjour",
-    "href": "talks/INSEE-VSCODE/index.html#bonjour",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Bonjour 👋",
-    "text": "Bonjour 👋\n\n\nStatisticien @ INRAE | UR “ETTIS”\nEcologue de formation ayant mal tourné\nR nerd depuis ~10ans : Packages R, Applis Shiny, extensions Quarto\nPropageur de bonnes pratiques (renv, targets, tidyverse/models)\nApprenti devops (gitlab cicd, docker, k8s) -&gt; Projet SK8"
+    "objectID": "talks/2023-test/test-idea.html#quarto",
+    "href": "talks/2023-test/test-idea.html#quarto",
+    "title": "La méthode IDEA4",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#et-vous-vous-codez-avec-quoi",
-    "href": "talks/INSEE-VSCODE/index.html#et-vous-vous-codez-avec-quoi",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Et vous, vous codez avec quoi ?",
-    "text": "Et vous, vous codez avec quoi ?\n\n\n\n\n\n\n\n\nEnvironnement de développement intégré (IDE) Open-Source développé par Rstudio Posit ©️\nIndissociable de \nPosit mise sur vscode pour   Quid de l’IDE Rstudio ?\n\nQuarto vs Rmarkdown == vscode vs Rstudio ?"
+    "objectID": "talks/2023-test/test-idea.html#bullets",
+    "href": "talks/2023-test/test-idea.html#bullets",
+    "title": "La méthode IDEA4",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#visual-studio-code",
-    "href": "talks/INSEE-VSCODE/index.html#visual-studio-code",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Visual Studio Code",
-    "text": "Visual Studio Code\n\n\nIDE Open-Source développé par Microsoft\nDisponible sous   et  (electron.js)\nEntièrement modulable (.json) et formidable bibliothèque d’extensions (&gt;40k)\nExcellente intégration de  et \nPrise en charge d’une 100aine de langages : C, C#, C++, CSS, HTML, Java, JavaScript, Markdown, PHP, Python…\n… y compris  !"
+    "objectID": "talks/2023-test/test-idea.html#code",
+    "href": "talks/2023-test/test-idea.html#code",
+    "title": "La méthode IDEA4",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#ca-ressemble-à-quoi",
-    "href": "talks/INSEE-VSCODE/index.html#ca-ressemble-à-quoi",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Ca ressemble à quoi ?",
-    "text": "Ca ressemble à quoi ?\n\nA ce que l’on veut !!"
+    "objectID": "talks/2023-test/test-idea.html#about-machine-learning",
+    "href": "talks/2023-test/test-idea.html#about-machine-learning",
+    "title": "La méthode IDEA4",
+    "section": "About machine learning",
+    "text": "About machine learning"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#lexplorateur-de-fichier",
-    "href": "talks/INSEE-VSCODE/index.html#lexplorateur-de-fichier",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "L’explorateur de fichier",
-    "text": "L’explorateur de fichier\n\n\n\n\nPossibilité de glisser-déposer depuis l’explorateur de fichier\nRenommage à la volée\nthèmes d’icônes\ncopy/paste depuis le presse-papier (+ génération syntaxe markdown)\nRechercher/Remplacer dans un fichier / dans un répertoire (rapidité++ et regex)"
+    "objectID": "talks/2023-test/test-idea.html#thank-you",
+    "href": "talks/2023-test/test-idea.html#thank-you",
+    "title": "La méthode IDEA4",
+    "section": "Thank you!",
+    "text": "Thank you!\n\nFind me online:\n david.carayon@inrae.fr\n https://david.carayon.pages.mia.inra.fr/site/\n @davidcarayon\n forgemia.inra.fr/david.carayon\n @david_carayon\n\n Slides available here\n\n\n\nPrésentation de la méthode IDEA4 | Séminaire"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#la-configuration",
-    "href": "talks/INSEE-VSCODE/index.html#la-configuration",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "La configuration",
-    "text": "La configuration\n\nCes options sont synchronisables avec votre compte Gihub"
+    "objectID": "talks/EABX_SK8/index.html#shiny-cest-quoi",
+    "href": "talks/EABX_SK8/index.html#shiny-cest-quoi",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Shiny, c’est quoi ? 🤔",
+    "text": "Shiny, c’est quoi ? 🤔\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShiny est un package R qui permet de développer facilement des applications web interactives dans une syntaxe R très simple (pouvant être complétée par du HTML / CSS / JS pour les applications les plus abouties).\nOutil principalement utilisé pour l’analyse et la visualisation de données (mais pas que)"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#la-palette-de-commandes",
-    "href": "talks/INSEE-VSCODE/index.html#la-palette-de-commandes",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "La palette de commandes",
-    "text": "La palette de commandes\nUn raccourcis pour TOUS les unir  : CTRL + MAJ + P"
+    "objectID": "talks/EABX_SK8/index.html#un-exemple",
+    "href": "talks/EABX_SK8/index.html#un-exemple",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Un exemple",
+    "text": "Un exemple\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD ::: columns ::: {.column width=“50%”}  :::\n\n\n\n\n\n\n\n\nExemple EABX"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#snippets",
-    "href": "talks/INSEE-VSCODE/index.html#snippets",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Snippets",
-    "text": "Snippets\n\n\n\n\n\nFichier .Qmd\n\n\n\n\n\n\nFichier .R"
+    "objectID": "talks/EABX_SK8/index.html#quelques-notions-nécessaires",
+    "href": "talks/EABX_SK8/index.html#quelques-notions-nécessaires",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Quelques notions nécessaires",
+    "text": "Quelques notions nécessaires\nContinuous Integration / Continuous Development (CI/CD)\n\n\n\n\n\n\n\n\nSuite d’instructions automatiques lors de mise à jour de code\nPermet d’appliquer des tests automatiques (sécurité) ou encore d’effectuer des actions (publication de données, pages web, etc.)\nPiloté par exemple par un fichier .gitlab-ci.yml\n\n\n\n\ngitlab-ci.yml\n\n01-Publier:\n  stage: Gérer mon application\n  needs: [\"Construire-l-application\"]\n  image: curlimages/curl:latest\n  rules:\n    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == \"true\"'\n      when: on_success\n      allow_failure: false\n    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $MISE_A_JOUR_AUTOMATIQUE == \"false\"'\n      when: manual\n      allow_failure: true\n  before_script:\n    - ACTION=$SK8_DEPLOY\n  script:\n    - *commande-job"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug-formattage",
-    "href": "talks/INSEE-VSCODE/index.html#outils-développeurs-linting-debug-formattage",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Outils développeurs : Linting, debug, formattage",
-    "text": "Outils développeurs : Linting, debug, formattage"
+    "objectID": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-1",
+    "href": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-1",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Quelques notions nécessaires",
+    "text": "Quelques notions nécessaires\nDocker\n\n\n\n\nPermet de Containeuriser des logiciels, applications\nCréation d’une image Docker à partir d’une recette : le Dockerfile\nFacilite la diffusion (gestion des dépendances systèmes, etc.)\n\n\n\n\nDockerfile\n\nFROM rocker/verse:4.2.1\nRUN apt-get update && apt-get install -y  cmake imagemagick libcurl4-openssl-dev [...]\nRUN mkdir -p /usr/local/lib/R/etc/ /usr/lib/R/etc/\nRUN echo \"options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)\"\nRUN R -e 'install.packages(\"remotes\")'\nRUN Rscript -e 'remotes::install_version(\"magrittr\",upgrade=\"never\", version = \"2.0.3\")'\nRUN Rscript -e 'remotes::install_version(\"htmltools\",upgrade=\"never\", version = \"0.5.5\")'\n[...]\nRUN Rscript -e 'remotes::install_github(\"rstudio/sass@2f1f152d84c162ccb9aba1c056e3548079d669d9\")'\nRUN mkdir /build_zone\nADD . /build_zone\nWORKDIR /build_zone\nRUN R -e 'remotes::install_local(upgrade=\"never\")'\nRUN rm -rf /build_zone\nEXPOSE 3838\nCMD R -e \"options('shiny.port'=3838,shiny.host='0.0.0.0');ShinyIDEA::run_app()\""
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#git",
-    "href": "talks/INSEE-VSCODE/index.html#git",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Git ",
-    "text": "Git"
+    "objectID": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-2",
+    "href": "talks/EABX_SK8/index.html#quelques-notions-nécessaires-2",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Quelques notions nécessaires",
+    "text": "Quelques notions nécessaires\nKubernetes\n Solution permettant de distribuer intelligemment des container Docker aux utilisateurs."
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#github-gitlab",
-    "href": "talks/INSEE-VSCODE/index.html#github-gitlab",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "GitHub  / GitLab ",
-    "text": "GitHub  / GitLab"
+    "objectID": "talks/EABX_SK8/index.html#plusieurs-constats",
+    "href": "talks/EABX_SK8/index.html#plusieurs-constats",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Plusieurs constats…",
+    "text": "Plusieurs constats…\n\n\n\n Les applications R Shiny sont de plus en plus présentes dans notre environnement\n Peuvent être développées par des néophytes comme par des développeurs chevronnés\n Formidable outil de partage / valorisation et démocratisation des travaux menés dans l’institut\n Problématique majeure et récurrente autour de l’hébergement 😩"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#un-peu-de-configuration",
-    "href": "talks/INSEE-VSCODE/index.html#un-peu-de-configuration",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Un peu de configuration",
-    "text": "Un peu de configuration\n\nvscode n’est pas dédié à , contrairement à RStudio\nExcellent tutoriel en 3 parties de ThinkR ici, ici puis ici\n\n\n\ninstall.packages(\"languageserver\")\nInstaller l’extension vscode REditorSupport\nInstaller radian, une console R (basée sur python) plus conviviale que le terminal R de base\ninstall.packages(\"httpgd\") pour l’affichage de graphiques\nConfigurations diverses et ajout des raccourcis (pipe etc.)"
+    "objectID": "talks/EABX_SK8/index.html#solutions-existantes-dhébergement",
+    "href": "talks/EABX_SK8/index.html#solutions-existantes-dhébergement",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Solutions existantes d’hébergement",
+    "text": "Solutions existantes d’hébergement\n\n\n\n\n\n\n\nSolutions d’hébergement propriétaires\n\n\n\n \n\n\n\n\n\n\n\nRapprochement Shiny/Docker"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#autocomplétion-aide",
-    "href": "talks/INSEE-VSCODE/index.html#autocomplétion-aide",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Autocomplétion, aide",
-    "text": "Autocomplétion, aide\nUn peu différent de sous RStudio"
+    "objectID": "talks/EABX_SK8/index.html#solutions-existantes-à-inrae",
+    "href": "talks/EABX_SK8/index.html#solutions-existantes-à-inrae",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Solutions existantes à INRAE",
+    "text": "Solutions existantes à INRAE\n\nMultiples solutions ShinyServer OpenSource locales\nTrès limitées et problématiques en termes d’administration ⚠️\n\n\n\n\n\n\n\nUne solution intéressante à l’échelle d’une unité (BioSP)\n\n\n\nShinyProxy (Docker) https://shiny.biosp.inrae.fr\nGestion du code via GitLab CI/CD\nApplications conteneurisées\nAbstraction et meilleure gestion de la partie système"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#workspace",
-    "href": "talks/INSEE-VSCODE/index.html#workspace",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Workspace ",
-    "text": "Workspace"
+    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8",
+    "href": "talks/EABX_SK8/index.html#le-projet-sk8",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8",
+    "text": "Le projet SK8\n\n\n\n\nR-Shiny Kubernetes Service \\(\\rightarrow\\) SK8SS \\(\\rightarrow\\) SK8 🛹"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#mais-où-est-mon-projet",
-    "href": "talks/INSEE-VSCODE/index.html#mais-où-est-mon-projet",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Mais où est mon projet ? 😨",
-    "text": "Mais où est mon projet ? 😨\n\n\nPas de projets à la Rstudio (.RProj), Les workspaces vscode sont définis arbitrairement à l’échelle des répertoires (détection de dépôts git)"
+    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8-pourquoi",
+    "href": "talks/EABX_SK8/index.html#le-projet-sk8-pourquoi",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8 : Pourquoi ?",
+    "text": "Le projet SK8 : Pourquoi ?\n\n\n\nBesoins en augmentation d’hébergement d’apps Shiny\n\n\n\nFacile d’accès, pérenne et évolutif\nScalable (élastique)\nSécurisé \n\n\n\n\n\n\n\n\nFinalité\n\n\n\nAvoir une meilleure visibilité et harmonisation des travaux de l’institut \n\n\n\n\n\n\n\n\n\nContrainte forte\n\n\n\nDoit rester dans l’institut\nDoit répondre aux besoins des agents"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#extension-vscode-quarto",
-    "href": "talks/INSEE-VSCODE/index.html#extension-vscode-quarto",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Extension vscode Quarto",
-    "text": "Extension vscode Quarto\n\nQuarto est né peu après le début de des développements vscode chez Posit  Optimisé"
+    "objectID": "talks/EABX_SK8/index.html#déroulé-du-projet",
+    "href": "talks/EABX_SK8/index.html#déroulé-du-projet",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Déroulé du projet",
+    "text": "Déroulé du projet\n\n\nProjet d’unité BioSP 2019, porté par Jean-François Rey \\(\\rightarrow\\) CATI IMOTEP\nV1 (2021) : Etude de faisabilité, état des lieux INRAE, création des groupes de travail\nV2 (2022) : Passage d’un projet CATI-IMOTEP \\(\\rightarrow\\) Inter-CATIs et ouverture de la version Bêta\nV2 (2023) : Passage de l’infra en version kickflip, refonte quarto documentation & site web\n\n\n\n\n\n\n\n\n\n\n\n\nQui paye ? 💶\n\n\n\nFinancements SAPI & DipSO 2022/2023 (Formation et hackatons)\nFinancements futurs (+ pérennisation) en cours de recherche"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#autocomplétion",
-    "href": "talks/INSEE-VSCODE/index.html#autocomplétion",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Autocomplétion",
-    "text": "Autocomplétion\nAutocomplétion du YAML et du contenu Quarto"
+    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui",
+    "href": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8 : C’est qui ?",
+    "text": "Le projet SK8 : C’est qui ?\n\n\\(\\approx\\) 30 ITA (\\(\\approx\\) 15 actifs, noyau dur de 5 agents)\n\\(\\neq\\) CATIs (10), Unités, Départements scientifiques et directions\nStatisticiens, Bioinformaticiens, DevOps, Administrateurs systèmes…\n2 groupes de travail, réunions mensuelles :\n\nGroupe Utilisateurs \nGroupe DevOps"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#intégration-de-templates-quarto",
-    "href": "talks/INSEE-VSCODE/index.html#intégration-de-templates-quarto",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Intégration de templates quarto",
-    "text": "Intégration de templates quarto\n\n\n\nhttps://github.com/davidcarayon/quarto-inrae-extension"
+    "objectID": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui-1",
+    "href": "talks/EABX_SK8/index.html#le-projet-sk8-cest-qui-1",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le projet SK8 : C’est qui ?",
+    "text": "Le projet SK8 : C’est qui ?"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#les-extensions",
-    "href": "talks/INSEE-VSCODE/index.html#les-extensions",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Les extensions !",
-    "text": "Les extensions !"
+    "objectID": "talks/EABX_SK8/index.html#infrastructure-générale",
+    "href": "talks/EABX_SK8/index.html#infrastructure-générale",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Infrastructure générale",
+    "text": "Infrastructure générale\n\n\n\n\n\nSchéma simplifié du fonctionnement"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#rainbow-csv",
-    "href": "talks/INSEE-VSCODE/index.html#rainbow-csv",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Rainbow CSV",
-    "text": "Rainbow CSV"
+    "objectID": "talks/EABX_SK8/index.html#du-point-de-vue-utilisateur",
+    "href": "talks/EABX_SK8/index.html#du-point-de-vue-utilisateur",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Du point de vue utilisateur",
+    "text": "Du point de vue utilisateur\n\n\n\n\n\n\n\nDemande d’hébergement : 🆕 https://demande-hebergement.sk8.inrae.fr 🆕\nCréation automatique d’une issue sur le support https://forgemia.inra.fr/sk8/sk8-support/\nCréation d’un projet (app) sous https://forgemia.inra.fr/sk8/sk8-apps/\nL’utilisateur ajoute son code : git clone | add | commit | push\nApplication disponible : https://sk8-demo.sk8.inrae.fr"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#excel-viewer",
-    "href": "talks/INSEE-VSCODE/index.html#excel-viewer",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Excel Viewer",
-    "text": "Excel Viewer"
+    "objectID": "talks/EABX_SK8/index.html#le-catalogue-sk8",
+    "href": "talks/EABX_SK8/index.html#le-catalogue-sk8",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Le catalogue SK8",
+    "text": "Le catalogue SK8\n\n\n\n\n\n\n\n\n\nL’utilisation d’un catalogue (via ShinyProxy) permet\n\n\n\nDe disposer d’un hub centralisé qui référence toutes les applications\nDe déployer une instance distincte pour chaque utilisateur d’une application\n\n\n\n\n\n\n\n\n\n\n\nhttps://shiny.sk8.inrae.fr"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#color-picker",
-    "href": "talks/INSEE-VSCODE/index.html#color-picker",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Color Picker",
-    "text": "Color Picker"
+    "objectID": "talks/EABX_SK8/index.html#focus-app-demande-dhébergement",
+    "href": "talks/EABX_SK8/index.html#focus-app-demande-dhébergement",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Focus app demande d’hébergement",
+    "text": "Focus app demande d’hébergement\n\n\n\nDéveloppé avec {shinysurveys}\nConnexion OAuth via la ForgeMIA (API GitLab )\nListes déroulantes personnalisées en fonction de l’utilisateur ()\nPossibilité d’upload un logo pour l’app : API pour l’intégrer dans une issue GitLab\nCréation du corps markdown d’une issue remplie avec les infos saisies ({glue})\nEnvoi d’un mail à l’utilisateur (serveur SMTP : dix-sk8)"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#codesnap",
-    "href": "talks/INSEE-VSCODE/index.html#codesnap",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "CodeSnap",
-    "text": "CodeSnap"
+    "objectID": "talks/EABX_SK8/index.html#bilan",
+    "href": "talks/EABX_SK8/index.html#bilan",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Bilan",
+    "text": "Bilan\n\n✅ Plateforme ouverte en version bêta ✅\n⚠️ Les use-case les plus complexes sont les bienvenus pour tester le service ! ⚠️\nTravail innovant mêlant de nombreuses technologies (R, Docker, Gitlab, CI/CD…)\nProjet mêlant une grande diversité de profils au travers de 10 CATIs\nAméliorations à venir au fil des travaux des groupes Users & Devops…\n… Mais principalement basé sur du volontariat !"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#ia-générative-copilot-llms",
-    "href": "talks/INSEE-VSCODE/index.html#ia-générative-copilot-llms",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "IA générative (Copilot, LLMs…)",
-    "text": "IA générative (Copilot, LLMs…)\nIntégration native Github Copilot (Microsoft) et intégrations de LLMs OpenSource (ex : LLama3)"
+    "objectID": "talks/EABX_SK8/index.html#et-la-suite",
+    "href": "talks/EABX_SK8/index.html#et-la-suite",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Et la suite ?",
+    "text": "Et la suite ?\n\n\n\nIntégration des cas d’usage CATIs\nTraitement des retours utilisateurs\nPoster présenté aux rencontres R 2023 à Avignon"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#database-manager",
-    "href": "talks/INSEE-VSCODE/index.html#database-manager",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Database Manager",
-    "text": "Database Manager"
+    "objectID": "talks/EABX_SK8/index.html#et-la-suite-1",
+    "href": "talks/EABX_SK8/index.html#et-la-suite-1",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
+    "section": "Et la suite ?",
+    "text": "Et la suite ?\n\n\n\nChantiers en cours 🏗️\n\n\n\nPérennisation de l’infrastructure (Analyses, Études et solutions possibles)\nDonnées persistantes (Solution : Stockage S3 externe)\nMonitoring et log\nAuthentification\nIntégration de Rstudio Server"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#github-actions",
-    "href": "talks/INSEE-VSCODE/index.html#github-actions",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Github Actions",
-    "text": "Github Actions"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#gitlab-workflow",
-    "href": "talks/INSEE-VSCODE/index.html#gitlab-workflow",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Gitlab Workflow",
-    "text": "Gitlab Workflow"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#ssh-remote",
-    "href": "talks/INSEE-VSCODE/index.html#ssh-remote",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "SSH Remote",
-    "text": "SSH Remote"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#python-shiny",
-    "href": "talks/INSEE-VSCODE/index.html#python-shiny",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Python  & Shiny",
-    "text": "Python  & Shiny"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#latex",
-    "href": "talks/INSEE-VSCODE/index.html#latex",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "LaTeX",
-    "text": "LaTeX"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#foam",
-    "href": "talks/INSEE-VSCODE/index.html#foam",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "FOAM",
-    "text": "FOAM\nUn Obsidian dans vscode !"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#et-bien-dautres",
-    "href": "talks/INSEE-VSCODE/index.html#et-bien-dautres",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Et bien d’autres !!",
-    "text": "Et bien d’autres !!\n\n\n\nhttps://marketplace.visualstudio.com"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#les-quelques-inconvénients",
-    "href": "talks/INSEE-VSCODE/index.html#les-quelques-inconvénients",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "Les (quelques) inconvénients",
-    "text": "Les (quelques) inconvénients\n\n\nPas de templates de projet R en GUI (ex : R package with devtools)\nAutocompletion différente\nBeaucoup de bidouille (gestion de python, configs, raccourcis, conflits d’extensions)\nRenv : Quelques subtilités (vscode a besoin de 2 packages pour fonctionner)\nTROP de possibilités de customisation\nOutils spécifiquement développés pour rstudio non accessibles (type addin)"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#a-retenir",
-    "href": "talks/INSEE-VSCODE/index.html#a-retenir",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
-    "section": "A retenir",
-    "text": "A retenir\n\n\nFormidable outil qui ouvre vers une communauté bien plus large que \nNécessite un peu plus de compétences en bidouille informatiques\nPrend tout son sens lorsque le travail devient polyglotte (   )\n\nSi vous restez sous  uniquement, RStudio reste un IDE 100% dédié et tout à fait adapté\n\nFonctionnement hybride : RStudio pour du  en local, vscode pour de la connexion SSH ou pour d’autres langages"
-  },
-  {
-    "objectID": "talks/INSEE-VSCODE/index.html#merci-des-questions",
-    "href": "talks/INSEE-VSCODE/index.html#merci-des-questions",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "objectID": "talks/EABX_SK8/index.html#merci-des-questions",
+    "href": "talks/EABX_SK8/index.html#merci-des-questions",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
     "section": "Merci ! Des questions ?",
-    "text": "Merci ! Des questions ?\n\n\n\n\nMe contacter\n\n\n https://dcarayon.fr\n https://github.com/davidcarayon\n https://www.linkedin.com/in/carayon-david/\n david.carayon@inrae.fr\n\n\n\n\n Slides consultables ici :  https://dcarayon.fr/slides/INSEE-VSCODE"
+    "text": "Merci ! Des questions ?\n\n\n\n\nLes liens\n\n\n https://sk8.inrae.fr (Rmarkdown, obsolète)\n https://sk8.pages.mia.inra.fr/projet_sk8/ (Quarto 🏗️)\n https://docs.sk8.inrae.fr\n https://forgemia.inra.fr/sk8\n sk8-contact@groupes.renater.fr\n forum DipSO\n\n\n\n\n Slides consultables ici :  https://david.carayon.pages.mia.inra.fr/slides/talks/2023-05-26_SK8_EABX/presentation_SK8_EABX"
   },
   {
-    "objectID": "talks/INSEE-VSCODE/index.html#slides-made-with",
-    "href": "talks/INSEE-VSCODE/index.html#slides-made-with",
-    "title": "VSCode pour faire du R : une (R)évolution ?",
+    "objectID": "talks/EABX_SK8/index.html#slides-made-with",
+    "href": "talks/EABX_SK8/index.html#slides-made-with",
+    "title": "SK8 :skateboard: - Gestion et hébergement d’applications R Shiny sur des infrastructures INRAE",
     "section": "Slides made with …",
-    "text": "Slides made with …\n\n\n\n\n\n\n https://github.com/davidcarayon/quarto-inrae-extension"
+    "text": "Slides made with …\n\n\n\n\n\n\n https://github.com/davidcarayon/InraeThemes\n\n\n\n\n\nCafé données EABX | 26/05/2023"
   }
 ]
